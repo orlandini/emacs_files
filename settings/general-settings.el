@@ -94,17 +94,23 @@ point reaches the beginning or end of the buffer, stop there."
 
 
 (use-package exec-path-from-shell
-  :defer t
+  :defer 1
   :config
-  (if (not (eq system-type 'darwin))
-      (setenv "SHELL" "/usr/bin/zsh")
-    )
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)
-    (exec-path-from-shell-copy-env "PYTHONPATH")
-    (exec-path-from-shell-copy-env "DYLD_LIBRARY_PATH")
-    (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
-    )
+  
+  (setenv "SHELL" "/usr/bin/zsh")
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PYTHONPATH")
+  (exec-path-from-shell-copy-env "DYLD_LIBRARY_PATH")
+  (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
+  ;; (if (not (eq system-type 'darwin))
+  ;;     (setenv "SHELL" "/usr/bin/zsh")
+  ;;   )
+  ;; (when (memq window-system '(mac ns x))
+  ;;   (exec-path-from-shell-initialize)
+  ;;   (exec-path-from-shell-copy-env "PYTHONPATH")
+  ;;   (exec-path-from-shell-copy-env "DYLD_LIBRARY_PATH")
+  ;;   (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
+  ;;   )
   )
 
 
