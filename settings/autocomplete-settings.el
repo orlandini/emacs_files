@@ -40,7 +40,7 @@
 (use-package yasnippet
   :defer t
   :hook
-  ((c-mode c++-mode objc-mode cuda-mode) . 'yas-minor-mode))
+  ((c-mode c++-mode objc-mode cuda-mode python-mode) . 'yas-minor-mode))
 
 (provide 'autocomplete-settings)
 ;;; autocomplete-settings.el ends here
