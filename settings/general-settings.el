@@ -6,7 +6,9 @@
 
 (when (not (package-installed-p 'use-package)) (package-refresh-contents) (package-install 'use-package))
 (require 'use-package)
-
+;;PERFORMANCE
+;; https://emacs-lsp.github.io/lsp-mode/page/performance/
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 ;; DEBUGGING INIT TIMES
 
 
