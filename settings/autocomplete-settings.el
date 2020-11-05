@@ -14,7 +14,10 @@
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
                     :major-modes '(python-mode)
-                    :server-id 'pyls))
+                    :server-id 'pyls)
+   (setq lsp-prefer-flymake nil)
+   (setq lsp-file-watch-threshold 3000)
+   )
   :commands lsp
   :hook (
          (python-mode . lsp))
@@ -36,8 +39,12 @@
 (use-package ccls
   :defer t
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
-         (lambda () (require 'ccls) (lsp))))
-(setq lsp-enable-on-type-formatting nil)
+         (lambda () (require 'ccls) (lsp)))
+  :config
+  (setq lsp-enable-on-type-formatting nil)
+  )
+
+
 
 (use-package yasnippet
   :defer t
