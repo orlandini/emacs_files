@@ -7,6 +7,7 @@
 
 (use-package projectile
   :ensure t)
+
 (use-package lsp-mode
   :ensure t
   :config
@@ -15,8 +16,9 @@
                     :major-modes '(python-mode)
                     :server-id 'pyls))
   :commands lsp
-  :config
-  (add-hook 'python-mode-hook 'lsp))
+  :hook (
+         (python-mode . lsp))
+  )
   ;; (add-hook 'lsp-mode-hook
 ;; '(lambda () (local-set-key (kbd "C-.") 'lsp-describe-thing-at-point))))
 
