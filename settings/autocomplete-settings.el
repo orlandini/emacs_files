@@ -15,9 +15,9 @@
    (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
                     :major-modes '(python-mode)
                     :server-id 'pyls)
-   (setq lsp-prefer-flymake nil)
-   (setq lsp-file-watch-threshold 3000)
    )
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-file-watch-threshold 3000)
   :commands lsp
   :hook (
          (python-mode . lsp))
