@@ -22,7 +22,7 @@
 (require 'python-settings)
 (require 'cpp-settings)
 (require 'autocomplete-settings)
-(require 'gdb-settings)
+;; (require 'gdb-settings)
 (require 'latex-settings)
 (require 'org-mode-settings)
 (require 'magit-settings)
