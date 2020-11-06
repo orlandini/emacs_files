@@ -293,6 +293,15 @@ point reaches the beginning or end of the buffer, stop there."
 ;;ansi-term won't break ling lines in weird ways
 (setq term-suppress-hard-newline t)
 
+
+(use-package shell-pop
+  :defer 1
+  :init
+  (setq shell-pop-universal-key "C-t")
+  (setq shell-pop-window-position "bottom")
+  (setq shell-pop-restore-window-configuration t)
+  (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+  )
 ;; improve long line
 ;; (set bidi-inhibit-bpa t)
 (use-package pdf-tools
