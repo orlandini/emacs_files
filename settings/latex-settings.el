@@ -5,9 +5,16 @@
 ;; (add-hook 'LaTeX-mode-hook 'turn-on-outline-minor-mode)
 ;; (add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
 ;; (setq outline-minor-mode-prefix "\C-c \C-u")
+(use-package reftex
+  :defer t)
 
 (use-package auctex
-  :defer t)
+  :defer t
+  :config
+  (setq TeX-auto-save t
+        TeX-parse-self t
+        reftex-plug-into-AUCTeX t)
+  :hook (LaTeX-mode . reftex-mode)
 
 (use-package tex-site
   :defer t
