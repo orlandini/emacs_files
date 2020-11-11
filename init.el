@@ -18,11 +18,11 @@
 (require 'better-defaults)
 (require 'general-settings)
 (require 'system-cores)
-;; (require 'helm-settings)
+
 (require 'python-settings)
 (require 'cpp-settings)
 (require 'autocomplete-settings)
-;; (require 'gdb-settings)
+
 (require 'latex-settings)
 (require 'org-mode-settings)
 (require 'magit-settings)
