@@ -224,23 +224,6 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
 
-
-(progn
-  (defun boundary ()
-    (and      (= (char-syntax (char-after))  ?w)
-              (not (= (char-syntax (char-before)) ?w))))
-  (defun my-forward-word ()
-    (interactive) 
-    (while (progn (forward-char)  (not (boundary)))))
-  (defun my-backward-word ()
-    (interactive) 
-    (while (progn (backward-char) (not (boundary)))))
-  (global-set-key (kbd "M-f") 'my-forward-word)
-  (global-set-key (kbd "M-b")  'my-backward-word)
-  ;; (global-set-key [M-right] 'my-forward-word)
-  ;; (global-set-key [M-left]  'my-backward-word)
-  )
-
 (delete-selection-mode 1)
 
 ; window modifications
