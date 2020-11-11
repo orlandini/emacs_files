@@ -112,5 +112,20 @@ same directory as the org-buffer and insert a link to this file."
     (insert (concat "[[" filename "]]"))
     (org-display-inline-images)))
 
+;; https://github.com/weirdNox/org-noter
+(use-package org-noter
+  :defer 2)
+
+;; https://github.com/fuxialexander/org-pdftools
+(use-package org-pdftools
+  :defer 2
+  :hook (org-mode . org-pdftools-setup-link))
+
+(use-package org-noter-pdftools
+  :defer 2
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 (provide 'org-mode-settings)
