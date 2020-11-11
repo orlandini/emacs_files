@@ -14,8 +14,8 @@
   (setq TeX-auto-save t
         TeX-parse-self t
         reftex-plug-into-AUCTeX t)
-  :hook (LaTeX-mode . reftex-mode)
-
+  :hook (LaTeX-mode . reftex-mode))
+  
 (use-package tex-site
   :defer t
   :init
