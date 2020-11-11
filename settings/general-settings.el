@@ -89,7 +89,7 @@ point reaches the beginning or end of the buffer, stop there."
   "Kill line backwards and indent"
   (interactive)
   (kill-line 0)
-  (c-indent-line-or-region)
+  (indent-for-tab-command)
   ;; (delete-indentation)
   )
 
