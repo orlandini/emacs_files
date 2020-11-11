@@ -43,9 +43,10 @@
 
 ;; http://pragmaticemacs.com/emacs/advanced-undoredo-with-undo-tree/
 (use-package undo-tree
+  :ensure t
   :config
   ;;turn on everywhere
-  (global-undo-tree-mode 1)
+  (global-undo-tree-mode)
   ;; make ctrl-z undo
   ;; (global-set-key (kbd "C-z") 'undo)
   ;; ;; make ctrl-Z redo
