@@ -24,18 +24,20 @@
 
 ;; https://github.com/jschaf/esup
 (use-package esup
-  :ensure t
+  :defer 1
   ;; To use MELPA Stable use ":pin mepla-stable",
   :pin melpa
-  :commands (esup))
-(setq esup-depth 0)
-
-;; https://github.com/dholm/benchmark-init-el
-(use-package benchmark-init
-  :ensure t
+  :commands (esup)
   :config
-  ;; To disable collection of benchmark data after init is done.
-  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+  (setq esup-depth 0)
+  (setq esup-user-init-file (file-truename "~/.emacs.d/init.el")))
+
+;; ;; https://github.com/dholm/benchmark-init-el
+;; (use-package benchmark-init
+;;   :defer t
+;;   :config
+;;   ;; To disable collection of benchmark data after init is done.
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 
 ;; https://www.emacswiki.org/emacs/SavePlace
@@ -240,13 +242,11 @@ point reaches the beginning or end of the buffer, stop there."
   (aset buffer-display-table ?\^M []))
 
 
-(setq custom-safe-themes t)
+;; (setq custom-safe-themes t)
 (use-package nord-theme
-  :ensure t
+  :defer 0.1
   :config
-  (load-theme 'nord t)
-  (set-face-attribute 'default nil
-                      :family "Menlo"
+  ;; (load-theme 'nord t)
                       ;; :family "Source Code Pro"
                       :height 140
                       :weight 'normal
