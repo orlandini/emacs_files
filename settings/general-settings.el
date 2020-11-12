@@ -244,15 +244,19 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; (setq custom-safe-themes t)
 (use-package nord-theme
-  :defer 0.1
-  :config
-  ;; (load-theme 'nord t)
+  :ensure t
+  :init
+  (setq frame-inhibit-implied-resize t)
+  (set-face-attribute 'default nil
+                      :family "Menlo"
                       ;; :family "Source Code Pro"
                       :height 140
                       :weight 'normal
-                      :width 'normal)
+                      :width 'normal
+                      )
+  :config
+  (setq frame-inhibit-implied-resize nil)
   )
-
 
 (use-package smex
   :ensure t
