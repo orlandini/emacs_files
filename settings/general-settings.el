@@ -226,6 +226,10 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
 
+; navigate forward-up-list (based on backward-up-list)
+(global-set-key (kbd "C-M-i") (lambda () (interactive) (backward-up-list -1)))
+
+
 (delete-selection-mode 1)
 
 ; window modifications
