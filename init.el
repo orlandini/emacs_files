@@ -37,7 +37,7 @@
 
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/settings")
-(require 'better-defaults)
+;; (require 'better-defaults)
 (require 'general-settings)
 (require 'system-cores)
 

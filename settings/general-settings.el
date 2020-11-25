@@ -40,6 +40,20 @@
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 
+
+;; BETTER DEFAULTS
+(unless (or (fboundp 'helm-mode) (fboundp 'ivy-mode))
+    (ido-mode t)
+    (setq ido-enable-flex-matching t))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+(use-package uniquify
+    :defer t
+    :config
+    (setq uniquify-buffer-name-style 'forward)
+    )
+(show-paren-mode 1)
+(setq-default indent-tabs-mode nil)
 ;; https://www.emacswiki.org/emacs/SavePlace
 (save-place-mode 1)
 
