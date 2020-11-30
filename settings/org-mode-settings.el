@@ -30,6 +30,18 @@
   (org-latex-pdf-process (list "latexmk -xelatex -f %f"))
   )
 
+;; ORG-AGENDA settings
+;; references:
+;;    http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
+(setq org-agenda-files
+    (file-expand-wildcards "~/orgmode/*.org"))
+
+(use-package org-pomodoro
+  :defer t
+  :config
+  (setq org-pomodoro-keep-killed-pomodoro-time t)
+  )
+
 (use-package ox-latex
   :defer t
   :config
