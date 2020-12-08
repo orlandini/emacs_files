@@ -1,3 +1,9 @@
+;;REMOVE MENU BARS FIRST
+; don't show the menu and tool bars
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-modes . 0) default-frame-alist)
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(menu-bar-modes . 0) default-frame-alist)
 (require 'package)
 
 (setq package-enable-at-startup nil)
@@ -158,13 +164,6 @@ point reaches the beginning or end of the buffer, stop there."
 (if (version< emacs-version "26")
     (message "")
   (global-display-line-numbers-mode))
-
-
-
-; don't show the menu bar
-(menu-bar-mode 0)
-; don't show the tool bar
-(tool-bar-mode 0)
 
 ; don't indent with tabs
 (setq-default indent-tabs-mode nil)
