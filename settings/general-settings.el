@@ -69,7 +69,7 @@
   ;; (defalias 'redo 'undo-tree-redo)
   ;; (global-set-key (kbd "C-S-z") 'redo)
   :bind (("C-z" . undo)
-         ("C-S-z" . 'undo-tree-redo)))
+         ("C-S-z" . undo-tree-redo)))
 
 ;;smarter-beginning-of-line
 ;;https://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line
