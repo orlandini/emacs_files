@@ -12,6 +12,7 @@
 
 (when (not (package-installed-p 'use-package)) (package-refresh-contents) (package-install 'use-package))
 (require 'use-package)
+(setq use-package-always-ensure t)
 ;;PERFORMANCE
 ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
@@ -53,7 +54,7 @@
     (setq ido-enable-flex-matching t))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
-(use-package uniquify
+(use-package uniquify-files
     :defer t
     :config
     (setq uniquify-buffer-name-style 'forward)
@@ -65,7 +66,7 @@
 
 ;; http://pragmaticemacs.com/emacs/advanced-undoredo-with-undo-tree/
 (use-package undo-tree
-  :ensure t
+  :defer t
   :config
   ;;turn on everywhere
   (global-undo-tree-mode)
@@ -147,7 +148,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; ansi colors in shell
 (use-package ansi-color
-  :defer t)
+  :defer 0.5)
 
 ;; (use-package shx
 ;;   :ensure t

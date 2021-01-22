@@ -42,20 +42,24 @@
   (setq org-pomodoro-keep-killed-pomodoro-time t)
   )
 
-(use-package ox-latex
-  :defer t
-  :config
-  (add-to-list 'org-latex-classes
-               '("scrarticle" "\\documentclass{scrarticle}"
-                 ("\\section{%s}" . "\\section{%s}")
-                 ("\\subsection{%s}" . "\\subsection{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph{%s}")
-                 )))
+;;apparently it was not needed
+;; (use-package ox-latex
+;;   :defer t
+;;   :config
+;;   (add-to-list 'org-latex-classes
+;;                '("scrarticle" "\\documentclass{scrarticle}"
+;;                  ("\\section{%s}" . "\\section{%s}")
+;;                  ("\\subsection{%s}" . "\\subsection{%s}")
+;;                  ("\\subsubsection{%s}" . "\\subsubsection{%s}")
+;;                  ("\\paragraph{%s}" . "\\paragraph{%s}")
+;;                  ("\\subparagraph{%s}" . "\\subparagraph{%s}")
+;;                  )))
   
 
-
+(use-package org-ref
+  :config
+  (setq org-ref-completion-library 'org-ref-ivy-cite)
+  :defer t)
 
 ;; (use-package org-ref
 ;;   :defer t
