@@ -34,7 +34,13 @@
 ;; references:
 ;;    http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
 (setq org-agenda-files
-    (file-expand-wildcards "~/orgmode/*.org"))
+      (file-expand-wildcards "~/orgmode/*.org"))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "SOMEDAY(s)" "PROJ(p)" "|" "DONE(d)" "CANCELLED(c)")))
+
+(setq org-export-allow-bind-keywords t)
+
 
 (use-package org-pomodoro
   :defer t
