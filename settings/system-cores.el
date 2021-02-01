@@ -84,7 +84,7 @@
 
 ;; [1]: http://stackoverflow.com/q/20666556/1713079
 ;; [2]: https://github.com/aaron-em/system-cores.el
-
+(setq byte-compile-warnings '(cl-functions))
 (require 'cl)
 
 (put 'system-cores-delegate-error
