@@ -9,14 +9,13 @@
   :ensure t)
 
 (use-package lsp-mode
-  :ensure t
+  :defer t
   :config
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
                     :major-modes '(python-mode)
                     :server-id 'pyls)
    )
-  (setq lsp-prefer-flymake nil)
   (setq lsp-file-watch-threshold 3000)
   :commands lsp
   :hook (
@@ -26,15 +25,14 @@
 ;; '(lambda () (local-set-key (kbd "C-.") 'lsp-describe-thing-at-point))))
 
 (use-package lsp-ui
-  :ensure t
+  :defer t
   :commands lsp-ui-mode)
 (setq lsp-ui-doc-enable nil)
 
-(use-package company-quickhelp
-  :ensure t)
 (use-package company-lsp
   :ensure t
-  :commands company-lsp)
+  :commands company-lsp
+  :config (push 'company-lsp company-backends)) ;; add company-lsp as a backend
 
 (use-package ccls
   :defer t
@@ -42,6 +40,8 @@
          (lambda () (require 'ccls) (lsp)))
   :config
   (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   )
 
 
