@@ -260,21 +260,22 @@ point reaches the beginning or end of the buffer, stop there."
   (aset buffer-display-table ?\^M []))
 
 
-;; (setq custom-safe-themes t)
-(use-package nord-theme
-  :ensure t
-  :init
-  (setq frame-inhibit-implied-resize t)
-  (set-face-attribute 'default nil
-                      :family "Menlo"
-                      ;; :family "Source Code Pro"
-                      :height 140
-                      :weight 'normal
-                      :width 'normal
-                      )
-  :config
-  (setq frame-inhibit-implied-resize nil)
-  )
+(let ((custom--inhibit-theme-enable nil))
+  (use-package nord-theme
+    :ensure t
+    :init
+    (setq frame-inhibit-implied-resize t)
+    (set-face-attribute 'default nil
+                        ;; :family "Menlo"
+                        :family "Hack"
+                        ;; :family "Source Code Pro"
+                        :height 120
+                        :weight 'normal
+                        :width 'normal
+                        )
+    :config
+    (setq frame-inhibit-implied-resize nil)
+    ))
 
 (use-package smex
   :ensure t
@@ -311,7 +312,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;; improve long line
 ;; (set bidi-inhibit-bpa t)
 (use-package pdf-tools
-  :defer t
+  :defer 2
   :config
   (pdf-loader-install :no-query))
 
