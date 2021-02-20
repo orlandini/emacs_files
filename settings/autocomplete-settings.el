@@ -8,31 +8,35 @@
 (use-package projectile
   :ensure t)
 
-(use-package lsp-mode
+;; already takes care of lsp mode
+(use-package lsp-python-ms
   :defer t
+  
+  :init (setq lsp-python-ms-auto-install-server t)
   :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
-                    :major-modes '(python-mode)
-                    :server-id 'pyls)
-   )
+  (setq lsp-python-ms-python-executable "/usr/local/bin/python3")
   (setq lsp-file-watch-threshold 3000)
-  :commands lsp
-  :hook (
-         (python-mode . lsp))
-  )
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-python-ms)
+                         (lsp))))  ; or lsp-deferred
   ;; (add-hook 'lsp-mode-hook
 ;; '(lambda () (local-set-key (kbd "C-.") 'lsp-describe-thing-at-point))))
 
 (use-package lsp-ui
   :defer t
-  :commands lsp-ui-mode)
-(setq lsp-ui-doc-enable nil)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable nil)
+  )
+
+(use-package flycheck
+  :defer t)
 
 (use-package company-lsp
-  :ensure t
+  :defer t
   :commands company-lsp
-  :config (push 'company-lsp company-backends)) ;; add company-lsp as a backend
+  :config (push 'company-lsp company-backends)
+  ) ;; add company-lsp as a backend
 
 (use-package ccls
   :defer t
