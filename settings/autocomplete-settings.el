@@ -15,6 +15,7 @@
   :init (setq lsp-python-ms-auto-install-server t)
   :config
   (setq lsp-python-ms-python-executable "/usr/local/bin/python3")
+  (setq lsp-python-ms-python-executable-cmd "python3")
   (setq lsp-file-watch-threshold 3000)
   :hook (python-mode . (lambda ()
                          (require 'lsp-python-ms)
