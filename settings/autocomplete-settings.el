@@ -40,10 +40,10 @@
   (setq lsp-file-watch-threshold 3000)
   )
 
-;; (use-package flycheck
-;;   :defer t
-;;   :config
-;;   (setq flycheck-python-flake8-executable "flake8"))
+(use-package flycheck
+  :defer t
+  :config
+  (setq flycheck-python-flake8-executable "flake8"))
 
 (use-package company-lsp
   :defer t
