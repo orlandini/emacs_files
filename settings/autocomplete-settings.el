@@ -16,22 +16,34 @@
   :config
   (setq lsp-python-ms-python-executable "/usr/local/bin/python3")
   (setq lsp-python-ms-python-executable-cmd "python3")
-  (setq lsp-file-watch-threshold 3000)
   :hook (python-mode . (lambda ()
+                         (setq lsp-python-ms-extra-paths "/opt/netgen/lib/python3/dist-packages")
                          (require 'lsp-python-ms)
-                         (lsp))))  ; or lsp-deferred
-  ;; (add-hook 'lsp-mode-hook
-;; '(lambda () (local-set-key (kbd "C-.") 'lsp-describe-thing-at-point))))
+                         (lsp)))
+  ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
+  ;; taken from: https://github.com/emacs-lsp/lsp-python-ms/issues/43
+   (flycheck-mode . (lambda ()
+                      (flycheck-add-next-checker 'lsp 'python-flake8)
+                      ;; (flycheck-add-next-checker 'python-flake8 'python-mypy)
+                      (message "Added flycheck checkers.")))
+  )
 
 (use-package lsp-ui
   :defer t
   :commands lsp-ui-mode
+  :hook (python-mode . lsp-ui-mode)
+  (c++-mode . lsp-ui-mode)
   :config
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-prefer-flymake nil)
   (setq lsp-ui-doc-enable nil)
+  (setq lsp-file-watch-threshold 3000)
   )
 
-(use-package flycheck
-  :defer t)
+;; (use-package flycheck
+;;   :defer t
+;;   :config
+;;   (setq flycheck-python-flake8-executable "flake8"))
 
 (use-package company-lsp
   :defer t
@@ -44,8 +56,6 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp)))
   :config
-  (setq lsp-enable-on-type-formatting nil)
-  (setq lsp-prefer-flymake nil)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   )
 
