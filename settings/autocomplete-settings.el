@@ -49,6 +49,8 @@
   :defer t
   :commands company-lsp
   :config (push 'company-lsp company-backends)
+  (push '((company-capf :with company-yasnippet)) company-backends)
+
   ) ;; add company-lsp as a backend
 
 (use-package ccls
@@ -59,12 +61,32 @@
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   )
 
+;; https://github.com/FredeEB/.emacs.d#yasnippet
 
+(use-package yasnippet-snippets
+  :defer t)
+(use-package react-snippets
+  :defer t)
 
 (use-package yasnippet
   :defer t
-  :hook
-  ((c-mode c++-mode objc-mode cuda-mode python-mode) . 'yas-minor-mode))
+  :init
+  (yas-global-mode 1))
+
+(use-package auto-yasnippet
+  :defer t)
+
+(defun company-yasnippet-or-completion ()
+  (interactive)
+  (let ((yas-fallback-behavior nil))
+    (unless (yas-expand)
+      (call-interactively #'company-complete-common))))
+
+(add-hook 'company-mode-hook
+	  (lambda () (substitute-key-definition
+		      'company-complete-common
+		      'company-yasnippet-or-completion
+		      company-active-map)))
 
 (provide 'autocomplete-settings)
 ;;; autocomplete-settings.el ends here
