@@ -47,7 +47,8 @@
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 
-
+(use-package restart-emacs
+  :defer 1)
 ;; BETTER DEFAULTS
 (unless (or (fboundp 'helm-mode) (fboundp 'ivy-mode))
     (ido-mode t)
