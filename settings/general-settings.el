@@ -263,16 +263,13 @@ point reaches the beginning or end of the buffer, stop there."
 
 (let ((custom--inhibit-theme-enable nil))
   (use-package nord-theme
-    :ensure t
     :init
     (setq frame-inhibit-implied-resize t)
     (set-face-attribute 'default nil
-                        ;; :family "Menlo"
-                        :family "Hack"
-                        ;; :family "Source Code Pro"
+                        :family "Fira Code"
                         :height 120
-                        :weight 'normal
-                        :width 'normal
+                        ;; :weight 'normal
+                        ;; :width 'normal
                         )
     :config
     (setq frame-inhibit-implied-resize nil)
