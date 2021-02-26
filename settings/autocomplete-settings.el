@@ -36,7 +36,8 @@
   :config
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-prefer-flymake nil)
-  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-delay 1)
+
   (setq lsp-file-watch-threshold 3000)
   )
 
