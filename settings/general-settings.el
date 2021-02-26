@@ -36,8 +36,8 @@
   :pin melpa
   :commands (esup)
   :config
-  (setq esup-depth 0)
-  (setq esup-user-init-file (file-truename "~/.emacs.d/init.el")))
+  (setq esup-depth 1)
+  (setq esup-user-init-file (file-truename "~/git/emacs_files/init.el")))
 
 ;; ;; https://github.com/dholm/benchmark-init-el
 ;; (use-package benchmark-init
