@@ -69,11 +69,11 @@
   :defer t)
 
 (use-package yasnippet
-  :hook (python-mode . yasnippet-mode)
-  (c-mode . yasnippet-mode)
-  (c++-mode . yasnippet-mode)
-  (c-or-c++-mode . yasnippet-mode)
-  :defer t)
+  :defer t
+  :hook (python-mode . yas-minor-mode)
+  (c-mode . yas-minor-mode)
+  (c++-mode . yas-minor-mode)
+  (c-or-c++-mode . yas-minor-mode))
 
 (use-package auto-yasnippet
   :defer t)
