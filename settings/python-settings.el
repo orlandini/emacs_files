@@ -6,7 +6,7 @@
     (setq python-path "/usr/local/bin/python3")
   (setq python-path "/usr/bin/python3")
   )
-
+(setq python-shell-interpreter python-path)
 ;; (use-package elpy
 ;;   :ensure t
 ;;   :init
