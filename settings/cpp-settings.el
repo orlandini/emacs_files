@@ -41,8 +41,8 @@
 
 (use-package cff
   :defer t
-  :bind (:map c-mode-base-map
-              ("M-o" . 'cff-find-other-file)))
+  :hook
+  ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (define-key c-mode-base-map (kbd "M-o") 'cff-find-other-file))))
 
 (defun my-next-error ()
   "Jump to next error - not warning"
