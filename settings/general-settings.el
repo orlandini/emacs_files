@@ -123,7 +123,8 @@ point reaches the beginning or end of the buffer, stop there."
 ;; remap C-a to `smarter-move-beginning-of-line'
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
-
+;;tab-width
+(setq-default tab-width 2)
 ;;keys preferences
 (defun smart-kill-line-backwards ()
   "Kill line backwards and indent"
