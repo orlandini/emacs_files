@@ -20,6 +20,7 @@
    (message (shell-command-to-string (concat "c++filt _" (thing-at-point 'word))))
    )
 
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (defun insert-header-guard (guardstr)
   "Insert a header guard named GUARDSTR in a c++ file."
