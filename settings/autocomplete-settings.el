@@ -4,34 +4,59 @@
 ;;; Commentary:
                                         ;nothing really
 ;;; Code:
-
-(use-package projectile
-  :ensure t)
-
-(use-package lsp-ui
-  :defer t
-  :commands lsp-ui-mode
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :config
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-prefer-flymake nil)
-  (setq lsp-ui-doc-delay 1)
-
   (setq lsp-file-watch-threshold 3000)
-  )
+  (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq lsp-ui-doc-delay 1)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+(use-package lsp-treemacs
+  :after lsp)
+
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind
+  (:map company-active-map
+        ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+        ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-idle-delay 0)
+  (company-minimum-prefix-length 1))
+
+(use-package  company-box
+  :hook (company-mode . company-box-mode))
+
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  ;; NOTE: Set this to the folder where you keep your Git repos!
+  (when (file-directory-p "~/git")
+    (setq projectile-project-search-path '("~/git")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
 
 (use-package flycheck
   :defer t
   :config
   (setq flycheck-python-flake8-executable "flake8"))
 
-(use-package company
-  :defer t
-  :config
-  (setq company-idle-delay 0)
-  ;; (setq company-minimum-prefix-length 3)
-  ;; (global-company-mode t)
-  ;; (push '((company-capf :with company-yasnippet)) company-backends)
-)
 
 
 (use-package ccls
@@ -43,7 +68,9 @@
   )
 
 (use-package lsp-pyright
-  :defer t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp)))
   :if (executable-find "pyright")
   :config
   (setq lsp-pyright-python-executable "/usr/local/bin/python3")
@@ -52,15 +79,13 @@
   (setq lsp-pyright-use-library-code-for-types t)
   (setq lsp-pyright-auto-import-completions t)
   (setq lsp-pyright-auto-search-paths t)
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp)))
-  ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
-  ;; taken from: https://github.com/emacs-lsp/lsp-python-ms/issues/43
-  (flycheck-mode . (lambda ()
-                     (flycheck-add-next-checker 'lsp 'python-flake8)
-                     ;; (flycheck-add-next-checker 'python-flake8 'python-mypy)
-                     (message "Added flycheck checkers."))))
+  ;; ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
+  ;; ;; taken from: https://github.com/emacs-lsp/lsp-python-ms/issues/43
+  ;; (flycheck-mode . (lambda ()
+  ;;                    (flycheck-add-next-checker 'lsp 'python-flake8)
+  ;;                    ;; (flycheck-add-next-checker 'python-flake8 'python-mypy)
+  ;;                    (message "Added flycheck checkers.")))
+  )
 
 ;; https://github.com/FredeEB/.emacs.d#yasnippet
 (use-package yasnippet
