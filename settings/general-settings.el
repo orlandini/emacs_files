@@ -65,6 +65,11 @@
 ;; https://www.emacswiki.org/emacs/SavePlace
 (save-place-mode 1)
 
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
 
 
 (use-package multiple-cursors
