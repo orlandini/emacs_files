@@ -1,33 +1,33 @@
 (use-package org
-  :bind (("C-c l" . 'org-store-link)
-         :map org-mode-map
-         (("M-i p" . 'org-insert-python-block)
-          ("M-i a" . 'org-insert-align-block)
-          ("M-i * a" . 'org-insert-align-start-block)))
+  ;; :bind (("C-c l" . 'org-store-link)
+  ;;        :map org-mode-map
+  ;;        (("M-i p" . 'org-insert-python-block)
+  ;;         ("M-i a" . 'org-insert-align-block)
+  ;;         ("M-i * a" . 'org-insert-align-start-block)))
 
   :hook (org-mode . visual-line-mode)
 
-  :init
-  (fset 'org-insert-python-block
-        [?# ?+ ?B ?E ?G ?I ?N ?_ ?S ?R ?C ?  ?p ?y ?t ?h ?o ?n return return ?# ?+ ?E ?N ?D ?_ ?S ?R ?C ?\C-p])
-  (fset 'org-insert-align-star-block
-        [?\\ ?b ?e ?g ?i ?n ?\{ ?a ?l ?i ?g ?n ?* ?\} return return ?\\ ?e ?n ?d ?\{ ?a ?l ?i ?g ?n ?* ?\} up])
-  (fset 'org-insert-align-block
-        [?\\ ?b ?e ?g ?i ?n ?\{ ?a ?l ?i ?g ?n ?\} return return ?\\ ?e ?n ?d ?\{ ?a ?l ?i ?g ?n ?\} up])
-  :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)))
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.3))
-  (advice-add 'org-create-formula-image :around #'org-renumber-environment)
-  :custom
-  (org-startup-with-inline-images t)
-  (org-support-shift-select t)
-  (org-image-actual-width nil)
-  (org-babel-python-command "python3")
-  (org-startup-indented t) ; Enable `org-indent-mode' by default
-  ;; Scale latex images
-  (org-latex-pdf-process (list "latexmk -xelatex -f %f"))
+  ;; :init
+  ;; (fset 'org-insert-python-block
+  ;;       [?# ?+ ?B ?E ?G ?I ?N ?_ ?S ?R ?C ?  ?p ?y ?t ?h ?o ?n return return ?# ?+ ?E ?N ?D ?_ ?S ?R ?C ?\C-p])
+  ;; (fset 'org-insert-align-star-block
+  ;;       [?\\ ?b ?e ?g ?i ?n ?\{ ?a ?l ?i ?g ?n ?* ?\} return return ?\\ ?e ?n ?d ?\{ ?a ?l ?i ?g ?n ?* ?\} up])
+  ;; (fset 'org-insert-align-block
+  ;;       [?\\ ?b ?e ?g ?i ?n ?\{ ?a ?l ?i ?g ?n ?\} return return ?\\ ?e ?n ?d ?\{ ?a ?l ?i ?g ?n ?\} up])
+  ;; :config
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages
+  ;;  '((python . t)))
+  ;; (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.3))
+  ;; (advice-add 'org-create-formula-image :around #'org-renumber-environment)
+  ;; :custom
+  ;; (org-startup-with-inline-images t)
+  ;; (org-support-shift-select t)
+  ;; (org-image-actual-width nil)
+  ;; (org-babel-python-command "python3")
+  ;; (org-startup-indented t) ; Enable `org-indent-mode' by default
+  ;; ;; Scale latex images
+  ;; (org-latex-pdf-process (list "latexmk -xelatex -f %f"))
   )
 
 ;; ORG-AGENDA settings
@@ -62,10 +62,10 @@
 ;;                  )))
   
 
-(use-package org-ref
-  :config
-  (setq org-ref-completion-library 'org-ref-ivy-cite)
-  :defer t)
+;; (use-package org-ref
+;;   :config
+;;   (setq org-ref-completion-library 'org-ref-ivy-cite)
+;;   :defer t)
 
 ;; (use-package org-ref
 ;;   :defer t
@@ -78,76 +78,91 @@
 ;;   )
 
 
-;; continuous line numbering for align blocks
-(defun org-renumber-environment (orig-func &rest args)
-  (let ((results '()) 
-        (counter -1)
-        (numberp))
+;; ;; continuous line numbering for align blocks
+;; (defun org-renumber-environment (orig-func &rest args)
+;;   (let ((results '()) 
+;;         (counter -1)
+;;         (numberp))
 
-    (setq results (loop for (begin .  env) in 
-                        (org-element-map (org-element-parse-buffer) 'latex-environment
-                          (lambda (env)
-                            (cons
-                             (org-element-property :begin env)
-                             (org-element-property :value env))))
-                        collect
-                        (cond
-                         ((and (string-match "\\\\begin{equation}" env)
-                               (not (string-match "\\\\tag{" env)))
-                          (incf counter)
-                          (cons begin counter))
-                         ((string-match "\\\\begin{align}" env)
-                          (prog2
-                              (incf counter)
-                              (cons begin counter)                          
-                            (with-temp-buffer
-                              (insert env)
-                              (goto-char (point-min))
-                              ;; \\ is used for a new line. Each one leads to a number
-                              (incf counter (count-matches "\\\\$"))
-                              ;; unless there are nonumbers.
-                              (goto-char (point-min))
-                              (decf counter (count-matches "\\nonumber")))))
-                         (t
-                          (cons begin nil)))))
+;;     (setq results (loop for (begin .  env) in 
+;;                         (org-element-map (org-element-parse-buffer) 'latex-environment
+;;                           (lambda (env)
+;;                             (cons
+;;                              (org-element-property :begin env)
+;;                              (org-element-property :value env))))
+;;                         collect
+;;                         (cond
+;;                          ((and (string-match "\\\\begin{equation}" env)
+;;                                (not (string-match "\\\\tag{" env)))
+;;                           (incf counter)
+;;                           (cons begin counter))
+;;                          ((string-match "\\\\begin{align}" env)
+;;                           (prog2
+;;                               (incf counter)
+;;                               (cons begin counter)                          
+;;                             (with-temp-buffer
+;;                               (insert env)
+;;                               (goto-char (point-min))
+;;                               ;; \\ is used for a new line. Each one leads to a number
+;;                               (incf counter (count-matches "\\\\$"))
+;;                               ;; unless there are nonumbers.
+;;                               (goto-char (point-min))
+;;                               (decf counter (count-matches "\\nonumber")))))
+;;                          (t
+;;                           (cons begin nil)))))
 
-    (when (setq numberp (cdr (assoc (point) results)))
-      (setf (car args)
-            (concat
-             (format "\\setcounter{equation}{%s}\n" numberp)
-             (car args)))))
+;;     (when (setq numberp (cdr (assoc (point) results)))
+;;       (setf (car args)
+;;             (concat
+;;              (format "\\setcounter{equation}{%s}\n" numberp)
+;;              (car args)))))
   
-  (apply orig-func args))
+;;   (apply orig-func args))
 
-(defun my-org-screenshot (name)
-  "Take a screenshot into a time stamped unique-named file in the
-same directory as the org-buffer and insert a link to this file."
-  (interactive "sFile name: ")
-  (make-directory "org_images" :parents)
-  (let ((filename (concat
-                  (make-temp-name
-                   (concat default-directory
-                           "org_images/"
-                           name)) ".png")))
-    (message (concat "stored in " filename))
-    (call-process "import" nil nil nil filename)
-    (insert (concat "[[" filename "]]"))
-    (org-display-inline-images)))
+;; (defun my-org-screenshot (name)
+;;   "Take a screenshot into a time stamped unique-named file in the
+;; same directory as the org-buffer and insert a link to this file."
+;;   (interactive "sFile name: ")
+;;   (make-directory "org_images" :parents)
+;;   (let ((filename (concat
+;;                   (make-temp-name
+;;                    (concat default-directory
+;;                            "org_images/"
+;;                            name)) ".png")))
+;;     (message (concat "stored in " filename))
+;;     (call-process "import" nil nil nil filename)
+;;     (insert (concat "[[" filename "]]"))
+;;     (org-display-inline-images)))
 
-;; https://github.com/weirdNox/org-noter
-(use-package org-noter
-  :defer 2)
+;; ;; https://github.com/weirdNox/org-noter
+;; (use-package org-noter
+;;   :defer 2)
 
-;; https://github.com/fuxialexander/org-pdftools
-(use-package org-pdftools
-  :defer 2
-  :hook (org-mode . org-pdftools-setup-link))
+;; ;; https://github.com/fuxialexander/org-pdftools
+;; (use-package org-pdftools
+;;   :defer 2
+;;   :hook (org-mode . org-pdftools-setup-link))
 
-(use-package org-noter-pdftools
-  :defer 2
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+;; (use-package org-noter-pdftools
+;;   :defer 2
+;;   :after org-noter
+;;   :config
+;;   (with-eval-after-load 'pdf-annot
+;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
+
+
+;; sync google agenda
+
+(use-package org-gcal
+:defer 2
+:config
+(setq org-gcal-client-id "***REMOVED***.apps.googleusercontent.com"
+org-gcal-client-secret "***REMOVED***"
+org-gcal-file-alist '(("***REMOVED***" .  "~/orgmode/gcal-main.org")
+                      ("***REMOVED***@group.calendar.google.com" . "~/orgmode/gcal-labmec.org")
+                      ("***REMOVED***@group.calendar.google.com" .  "~/orgmode/gcal-unicamp.org")
+                      ("***REMOVED***@group.calendar.google.com" .  "~/orgmode/gcal-health.org")))
+)
 
 (provide 'org-mode-settings)

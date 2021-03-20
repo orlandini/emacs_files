@@ -71,8 +71,5 @@
 
 (custom-set-variables '(c-noise-macro-names '("constexpr")))
 
-(use-package glsl-mode
-  :mode (rx (or ".vert" ".frag" ".geom" ".tesc" ".tese" ".inc")))
-
 (provide 'cpp-settings)
 ;;; cpp-settings.el ends here
