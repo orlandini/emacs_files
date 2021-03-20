@@ -4,16 +4,20 @@
 
 ;;; Code:
 (use-package cmake-mode)
+
+(setq-default cmake-tab-width my-tab-width)
 (use-package cc-mode
   :defer t
   :init
   (fset 'add_block_brackets
         [return ?\{ return return ?\} up tab])
+  (setq-default c-basic-offset my-tab-width)
   :bind (:map c-mode-base-map
               ("C-{" . 'add_block_brackets))
+  :hook
+  ;; https://stackoverflow.com/questions/1475279/how-to-control-indentation-after-an-open-parenthesis-in-emacs
+  ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (c-set-offset 'arglist-intro 'my-tab-width)))
   )
-
-
 
 (defun demangle-at-point ()
   (interactive)

@@ -124,7 +124,11 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 ;;tab-width
-(setq-default tab-width 2)
+(setq my-tab-width 4)
+(setq-default tab-width my-tab-width)
+;;don't add newlines at the end of the file
+(setq mode-require-final-newline nil)
+(setq require-final-newline nil) 
 ;;keys preferences
 (defun smart-kill-line-backwards ()
   "Kill line backwards and indent"
