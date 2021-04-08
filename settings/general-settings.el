@@ -337,6 +337,8 @@ point reaches the beginning or end of the buffer, stop there."
 ;;   (define-key smudge-mode-map (kbd "C-c s") 'smudge-command-map)
 ;;   (global-smudge-remote-mode 1)
 ;;   (setq smudge-transport 'connect)
+;;   :bind (:map smudge-command-map
+;;          ("s" . 'smudge-track-search))
 ;;   )
 
 (use-package shell-pop
