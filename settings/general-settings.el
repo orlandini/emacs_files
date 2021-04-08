@@ -71,6 +71,10 @@
   :config
   (setq which-key-idle-delay 1))
 
+(use-package good-scroll
+  :defer 0.5
+  :config
+  (good-scroll-mode 1))
 
 (use-package multiple-cursors
   :defer 1
