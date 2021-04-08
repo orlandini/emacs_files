@@ -328,6 +328,17 @@ point reaches the beginning or end of the buffer, stop there."
 (setq term-suppress-hard-newline t)
 
 
+;; the following is for using smudge package for
+;; controlling spotify from within emacs
+;; (use-package smudge
+;;   :config
+;;   (setq smudge-oauth2-client-secret "<spotify-app-client-secret>")
+;;   (setq smudge-oauth2-client-id "<spotify-app-client-id>")
+;;   (define-key smudge-mode-map (kbd "C-c s") 'smudge-command-map)
+;;   (global-smudge-remote-mode 1)
+;;   (setq smudge-transport 'connect)
+;;   )
+
 (use-package shell-pop
   :defer 1
   :init
