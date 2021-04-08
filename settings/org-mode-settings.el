@@ -50,15 +50,15 @@
 
 ;; sync google agenda
 
-(use-package org-gcal
-:hook org-mode
-:config
-(setq org-gcal-client-id "***REMOVED***.apps.googleusercontent.com"
-org-gcal-client-secret "***REMOVED***"
-org-gcal-file-alist '(("***REMOVED***" .  "~/orgmode/gcal-main.org")
-                      ("***REMOVED***@group.calendar.google.com" . "~/orgmode/gcal-labmec.org")
-                      ("***REMOVED***@group.calendar.google.com" .  "~/orgmode/gcal-unicamp.org")
-                      ("***REMOVED***@group.calendar.google.com" .  "~/orgmode/gcal-health.org")))
-)
+;; (use-package org-gcal
+;; :hook org-mode
+;; :config
+;; (setq org-gcal-client-id "<my-client-id>"
+;; org-gcal-client-secret "<my-client-secret>"
+;; org-gcal-file-alist '(("<my-email>" .  "~/orgmode/gcal-main.org")
+;;                       ("uoklg77oj06cob1gaan5tnjr6o@group.calendar.google.com" . "~/orgmode/gcal-labmec.org")
+;;                       ("171qvqt3f7g4aim0t1njl0vf98@group.calendar.google.com" .  "~/orgmode/gcal-unicamp.org")
+;;                       ("ehua3rb4s12op0155ktir43fb4@group.calendar.google.com" .  "~/orgmode/gcal-health.org")))
+;; )
 
 (provide 'org-mode-settings)
