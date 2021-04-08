@@ -267,8 +267,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package move-text
  :defer t)
-(global-set-key (kbd "M-p") 'move-text-up)
-(global-set-key (kbd "M-n") 'move-text-down)
+(global-set-key (kbd "M-P") 'move-text-up)
+(global-set-key (kbd "M-N") 'move-text-down)
 
 ; navigate forward-up-list (based on backward-up-list)
 (global-set-key (kbd "C-M-i") (lambda () (interactive) (backward-up-list -1)))
