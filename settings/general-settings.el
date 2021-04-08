@@ -129,6 +129,12 @@ point reaches the beginning or end of the buffer, stop there."
 ;;don't add newlines at the end of the file
 (setq mode-require-final-newline nil)
 (setq require-final-newline nil) 
+
+(use-package dtrt-indent
+  :defer 1
+  :config
+  (dtrt-indent-global-mode 1))
+
 ;;keys preferences
 (defun smart-kill-line-backwards ()
   "Kill line backwards and indent"
