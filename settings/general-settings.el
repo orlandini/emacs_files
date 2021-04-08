@@ -48,7 +48,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (use-package uniquify-files
-    :defer t
+    :defer 2
     :config
     (setq uniquify-buffer-name-style 'forward)
     )
@@ -69,7 +69,7 @@
   (good-scroll-mode 1))
 
 (use-package multiple-cursors
-  :defer 1
+  :defer 5
   :config
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -79,7 +79,7 @@
 
 ;; http://pragmaticemacs.com/emacs/advanced-undoredo-with-undo-tree/
 (use-package undo-tree
-  :defer t
+  :defer 4
   :config
   ;;turn on everywhere
   (global-undo-tree-mode)
@@ -127,7 +127,7 @@ point reaches the beginning or end of the buffer, stop there."
 (setq require-final-newline nil) 
 
 (use-package dtrt-indent
-  :defer 1
+  :defer 0.75
   :config
   (dtrt-indent-global-mode 1))
 
@@ -258,9 +258,11 @@ point reaches the beginning or end of the buffer, stop there."
 (put 'narrow-to-region 'disabled nil)
 
 (use-package move-text
- :defer t)
+  :defer 0.2
+  :config
 (global-set-key (kbd "M-P") 'move-text-up)
 (global-set-key (kbd "M-N") 'move-text-down)
+)
 
 ; navigate forward-up-list (based on backward-up-list)
 (global-set-key (kbd "C-M-i") (lambda () (interactive) (backward-up-list -1)))

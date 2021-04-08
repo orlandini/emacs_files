@@ -53,14 +53,13 @@
 
 
 (use-package flycheck
-  :defer t
+  :after lsp
   :config
   (setq flycheck-python-flake8-executable "flake8"))
 
 
 
 (use-package ccls
-  :defer t
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp)))
   :config
@@ -74,7 +73,6 @@
                      rest)))
 
 (use-package lsp-pyright
-  :defer t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp)))
@@ -96,19 +94,16 @@
 
 ;; https://github.com/FredeEB/.emacs.d#yasnippet
 (use-package yasnippet
-  :defer t
   :hook (python-mode . yas-minor-mode)
   (c-mode . yas-minor-mode)
   (c++-mode . yas-minor-mode)
   (c-or-c++-mode . yas-minor-mode))
 
 (use-package yasnippet-snippets
-  :after yasnippet
-  :defer t)
+  :after yasnippet)
 
 (use-package auto-yasnippet
-  :after yasnippet
-  :defer t)
+  :after yasnippet)
 
 ;; might be useful
 ;; (defun company-yasnippet-or-completion ()

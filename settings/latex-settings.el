@@ -1,12 +1,12 @@
 (use-package reftex
-  :defer t
+  :hook latex-mode
   :config ; TODO how to detect if cleveref is loaded before deciding upon cref?
   (defun reftex-format-cref (label def-fmt ref-style)
     (format "\\cref{%s}" label))
   (setq reftex-format-ref-function 'reftex-format-cref))
 
 (use-package auctex
-  :defer t
+  :hook latex-mode
   :config
   (setq TeX-auto-save t
         TeX-parse-self t

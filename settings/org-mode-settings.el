@@ -43,7 +43,7 @@
 
 
 (use-package org-pomodoro
-  :defer t
+  :hook org-mode
   :config
   (setq org-pomodoro-keep-killed-pomodoro-time t)
   )
@@ -51,7 +51,7 @@
 ;; sync google agenda
 
 (use-package org-gcal
-:defer 2
+:hook org-mode
 :config
 (setq org-gcal-client-id "***REMOVED***.apps.googleusercontent.com"
 org-gcal-client-secret "***REMOVED***"
