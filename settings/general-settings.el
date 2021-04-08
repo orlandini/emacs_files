@@ -39,14 +39,6 @@
   (setq esup-depth 1)
   (setq esup-user-init-file (file-truename "~/git/emacs_files/init.el")))
 
-;; ;; https://github.com/dholm/benchmark-init-el
-;; (use-package benchmark-init
-;;   :defer t
-;;   :config
-;;   ;; To disable collection of benchmark data after init is done.
-;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
-
-
 (use-package restart-emacs
   :defer 1)
 ;; BETTER DEFAULTS
