@@ -170,8 +170,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 
   ;; )
-                                        ; (use-package vterm
-                                        ;  :ensure t)
 
 
 ;; ansi colors in shell
