@@ -106,15 +106,9 @@
   :after yasnippet
   :defer t)
 
-(use-package react-snippets
-  :after yasnippet
-  :defer t)
-
 (use-package auto-yasnippet
   :after yasnippet
   :defer t)
-
-
 
 ;; might be useful
 ;; (defun company-yasnippet-or-completion ()

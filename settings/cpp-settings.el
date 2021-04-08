@@ -66,12 +66,12 @@
   (compilation-set-skip-threshold 1))
 
 
-(use-package compile
-  :bind (:map compilation-mode-map
-              ("C-x M-n" . 'my-next-error)
-              ("C-x M-p" . 'my-previous-error)))
+;; (use-package compile
+;;   :bind (:map compilation-mode-map
+;;               ("C-x M-n" . 'my-next-error)
+;;               ("C-x M-p" . 'my-previous-error)))
 
-(custom-set-variables '(c-noise-macro-names '("constexpr")))
+;; (custom-set-variables '(c-noise-macro-names '("constexpr")))
 
 (provide 'cpp-settings)
 ;;; cpp-settings.el ends here
