@@ -3,7 +3,9 @@
 ; nothing special
 
 ;;; Code:
-(use-package cmake-mode)
+(use-package cmake-mode
+  :defer t)
+
 
 (setq-default cmake-tab-width my-tab-width)
 (use-package cc-mode
