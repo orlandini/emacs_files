@@ -56,6 +56,8 @@
 (setq-default indent-tabs-mode nil)
 ;; https://www.emacswiki.org/emacs/SavePlace
 (save-place-mode 1)
+(setq column-number-mode t)
+
 
 (use-package which-key
   :init (which-key-mode)
