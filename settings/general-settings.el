@@ -328,6 +328,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;;   :config
 ;;   (setq smudge-oauth2-client-secret "<spotify-app-client-secret>")
 ;;   (setq smudge-oauth2-client-id "<spotify-app-client-id>")
+;;   (setq smudge-status-location 'title-bar)
 ;;   (define-key smudge-mode-map (kbd "C-c s") 'smudge-command-map)
 ;;   (global-smudge-remote-mode 1)
 ;;   (setq smudge-transport 'connect)
