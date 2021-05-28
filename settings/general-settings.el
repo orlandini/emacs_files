@@ -207,8 +207,8 @@ point reaches the beginning or end of the buffer, stop there."
 (eval-after-load "grep"
   '(progn
     ;; (add-to-list 'grep-find-ignored-files "*.tmp")
-     (add-to-list 'grep-find-ignored-directories ".cquery_cached_index")
-     (add-to-list 'grep-find-ignored-directories ".ccls-cache")))
+     (add-to-list 'grep-find-ignored-directories ".ccls-cache")
+     (add-to-list 'grep-find-ignored-directories "build/docs/doxygen")))
 
 ; disable backup
 (setq backup-inhibited t)
