@@ -33,7 +33,7 @@
   (:map lsp-mode-map
         ("<tab>" . company-indent-or-complete-common))
   :custom
-  (company-idle-delay 0)
+  (company-idle-delay 0.5)
   (company-minimum-prefix-length 1))
 
 (use-package  company-box
