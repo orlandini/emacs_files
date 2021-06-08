@@ -58,6 +58,9 @@
 (save-place-mode 1)
 (setq column-number-mode t)
 
+(use-package emacs-everywhere
+  :config
+  (setq emacs-everywhere-paste-p t))
 
 (use-package which-key
   :init (which-key-mode)
