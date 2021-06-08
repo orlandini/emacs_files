@@ -327,6 +327,17 @@ point reaches the beginning or end of the buffer, stop there."
 (setq term-suppress-hard-newline t)
 
 
+
+(use-package quelpa
+  :defer 3  
+  :config
+  (quelpa
+   '(quelpa-use-package
+     :fetcher git
+     :url "https://github.com/quelpa/quelpa-use-package.git"))
+  (require 'quelpa-use-package))
+
+
 ;; the following is for using smudge package for
 ;; controlling spotify from within emacs
 ;; (use-package smudge
