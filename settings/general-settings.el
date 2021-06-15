@@ -1,9 +1,3 @@
-;;REMOVE MENU BARS FIRST
-; don't show the menu and tool bars
-(push '(tool-bar-lines . 0) default-frame-alist)
-(push '(tool-bar-modes . 0) default-frame-alist)
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(menu-bar-modes . 0) default-frame-alist)
 (require 'package)
 
 (setq package-enable-at-startup nil)
@@ -289,19 +283,17 @@ point reaches the beginning or end of the buffer, stop there."
   (aset buffer-display-table ?\^M []))
 
 
-(let ((custom--inhibit-theme-enable nil))
-  (use-package nord-theme
-    :init
-    (setq frame-inhibit-implied-resize t)
-    (set-face-attribute 'default nil
-                        :family "Fira Code"
-                        :height 120
-                        ;; :weight 'normal
-                        ;; :width 'normal
-                        )
-    :config
-    (setq frame-inhibit-implied-resize nil)
-    ))
+;; (let ((custom--inhibit-theme-enable nil))
+;;   (use-package nord-theme
+;;     ;; :init
+;;     ;; (setq frame-inhibit-implied-resize t)
+;;     ;; :config
+;;     ;; (setq frame-inhibit-implied-resize nil)
+;;     ))
+
+(use-package nord-theme
+  :init
+  (load-theme 'nord t))
 
 (use-package smex
   :ensure t

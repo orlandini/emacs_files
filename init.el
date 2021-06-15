@@ -10,30 +10,9 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 
+(when (version< emacs-version "27")
+  (load (concat user-emacs-directory "early-init.el")))
 
-
-;;GARBAGE-COLLECTOR SETTINGS
-;; https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
-;; and
-;; https://github.com/hlissner/doom-emacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
-
-(defun custom-defer-garbage-collection-h ()
-  (setq gc-cons-threshold most-positive-fixnum
-        gc-cons-percentage 0.6))
-
-(defun custom-restore-garbage-collection-h ()
-  ;; Defer it so that commands launched immediately after will enjoy the
-  ;; benefits.
-  (run-at-time
-   1 nil (lambda () (setq gc-cons-threshold 16777216 ; 16mb
-                          gc-cons-percentage 0.1))))
-
-;; setting different gc values for startup
-(custom-defer-garbage-collection-h)
-(add-hook 'emacs-startup-hook #'custom-restore-garbage-collection-h)
-;; raising gc-cons-threshold when minibuffer is active
-(add-hook 'minibuffer-setup-hook #'custom-defer-garbage-collection-h)
-(add-hook 'minibuffer-exit-hook #'custom-restore-garbage-collection-h)
 
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/settings")
