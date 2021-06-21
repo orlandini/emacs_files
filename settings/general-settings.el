@@ -329,7 +329,8 @@ point reaches the beginning or end of the buffer, stop there."
      :url "https://github.com/quelpa/quelpa-use-package.git"))
   (require 'quelpa-use-package))
 
-
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 ;; the following is for using smudge package for
 ;; controlling spotify from within emacs
 ;; (use-package smudge
