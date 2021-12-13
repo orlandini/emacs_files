@@ -355,9 +355,17 @@ point reaches the beginning or end of the buffer, stop there."
   )
 ;; improve long line
 ;; (set bidi-inhibit-bpa t)
+
+
 (use-package pdf-tools
-  :defer 2
+  :ensure t
+  :pin manual ;; don't reinstall when package updates
+  :mode  ("\\.pdf\\'" . pdf-view-mode)
   :config
-  (pdf-loader-install :no-query))
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-created-annotations t)
+  (pdf-tools-install :no-query)
+  (require 'pdf-occur))
+
 
 (provide 'general-settings)
