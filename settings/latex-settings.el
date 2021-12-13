@@ -9,6 +9,7 @@
 
 (use-package tex
   :ensure auctex
+  :hook ((LaTeX-mode) . lsp)
   :config
   (setq TeX-auto-save t
         TeX-parse-self t)
@@ -19,6 +20,7 @@
    (setq TeX-source-correlate-method 'synctex) ; enable synctex
    (setq TeX-source-correlate-mode t) ; enable text-source-correlate using synctex
    ;; to have the buffer refresh after compilation
+   (setq lsp-tex-server 'digestif)
    (add-hook 'TeX-after-compilation-finished-functions
              #'TeX-revert-document-buffer))
 
