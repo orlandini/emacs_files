@@ -295,6 +295,13 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (load-theme 'nord t))
 
+(use-package sudo-edit
+  :ensure t
+  :defer 2
+  :config
+  (global-set-key (kbd "C-c C-r") 'sudo-edit)
+  )
+
 (use-package smex
   :ensure t
   :config
