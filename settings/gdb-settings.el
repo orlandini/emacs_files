@@ -7,44 +7,52 @@
 ;; =================================
 ;; GDB configuration
 ;; =================================
-(use-package gdb-mi
-  :after quelpa
-  :quelpa (gdb-mi :fetcher git
-                  :url "https://github.com/weirdNox/emacs-gdb.git"
-                  :files ("*.el" "*.c" "*.h" "Makefile"))
-  :init
-  (fmakunbound 'gdb)
-  (fmakunbound 'gdb-enable-debug)
-  :config
-  (setq gdb-window-setup-function
-        (lambda (session)
-          (with-selected-frame (gdb--session-frame session)
-            (delete-other-windows)
-            (let*
-                ((top-left (selected-window))
-                 (right (split-window-horizontally
-                         (floor (* 0.6 (window-width)))))
-                 (bottom-left (split-window-vertically
-                              (floor (* 0.9 (window-body-height)))))
-                 )
-              (select-window right)
-              (let*
-                  ((top-right (selected-window))
-                   (bottom-right (split-window-vertically
-                                    (floor (* 0.75(window-body-height)))))
-                   (middle-l-right (split-window-vertically
-                                  (floor (* 0.666 (window-body-height)))))
-                   (middle-u-right (split-window-vertically
-                                 (floor (* 0.5 (window-body-height)))))
-                   )
-                (gdb--set-window-buffer top-left     (gdb--inferior-io-get-buffer session))
-                (gdb--set-window-buffer bottom-left    (gdb--comint-get-buffer session))
-                (gdb--set-window-buffer top-right  (gdb--breakpoints-get-buffer session))
-                (gdb--set-window-buffer middle-u-right (gdb--variables-get-buffer session))
-                (gdb--set-window-buffer middle-l-right (gdb--frames-get-buffer session))
-                (gdb--set-window-buffer bottom-right (gdb--inferior-io-get-buffer session))
-                (gdb--display-source-buffer top-left);;ok
-                )))))
+(setq gdb-many-windows nil)
+
+(defun set-gdb-layout(&optional c-buffer)
+  (if (not c-buffer)
+      (setq c-buffer (window-buffer (selected-window)))) ;; save current buffer
+
+  ;; from http://stackoverflow.com/q/39762833/846686
+  (set-window-dedicated-p (selected-window) nil) ;; unset dedicate state if needed
+  (switch-to-buffer gud-comint-buffer)
+  (delete-other-windows) ;; clean all
+  (let* (
+         (w-source (selected-window)) ;; left top
+         (w-gdb (split-window w-source nil 'right)) ;; right bottom
+         (w-locals (split-window w-gdb nil 'above)) ;; right middle bottom
+         (w-stack (split-window w-locals nil 'above)) ;; right middle top
+         (w-breakpoints (split-window w-stack nil 'above)) ;; right top
+         (w-io (split-window w-source (floor(* 0.9 (window-body-height)))
+                             'below)) ;; left bottom
+         )
+    (set-window-buffer w-io (gdb-get-buffer-create 'gdb-inferior-io))
+    (set-window-dedicated-p w-io t)
+    (set-window-buffer w-breakpoints (gdb-get-buffer-create 'gdb-breakpoints-buffer))
+    (set-window-dedicated-p w-breakpoints t)
+    (set-window-buffer w-locals (gdb-get-buffer-create 'gdb-locals-buffer))
+    (set-window-dedicated-p w-locals t)
+    (set-window-buffer w-stack (gdb-get-buffer-create 'gdb-stack-buffer))
+    (set-window-dedicated-p w-stack t)
+
+    (set-window-buffer w-gdb gud-comint-buffer)
+    
+    (select-window w-source)
+    (set-window-buffer w-source c-buffer)
+    ))
+
+(defadvice gdb (around args activate)
+  "Change the way to gdb works."
+  (setq global-config-editing (current-window-configuration)) ;; to restore: (set-window-configuration c-editing)
+  (let (
+        (c-buffer (window-buffer (selected-window))) ;; save current buffer
+        )
+    ad-do-it
+    (set-gdb-layout c-buffer))
   )
+(defadvice gdb-reset (around args activate)
+  "Change the way to gdb exit."
+  ad-do-it
+  (set-window-configuration global-config-editing))
 
 (provide 'gdb-settings)
