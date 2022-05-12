@@ -19,7 +19,7 @@
 ;; (require 'better-defaults)
 (require 'general-settings)
 (require 'system-cores)
-
+(require 'ivy-settings)
 (require 'python-settings)
 (require 'cpp-settings)
 (require 'gdb-settings)
