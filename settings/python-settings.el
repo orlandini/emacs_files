@@ -7,25 +7,19 @@
   (setq python-path "/usr/bin/python3")
   )
 (setq python-shell-interpreter python-path)
-;; (use-package elpy
-;;   :ensure t
-;;   :init
-;;   (elpy-enable)
-;;   :config;
-;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-;;   (setq elpy-rpc-virtualenv-path 'current)
-;;   (setq python-shell-interpreter python-path)
-;;   (setq elpy-rpc-python-command python-path))
-;; (use-package blacken
-;;   :ensure t
-;;   )
 
-;; (use-package ein
-;;   :ensure t
-;;   )
-;; ;; for elpy
-;; (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
-;; (setq elpy-shell-use-project-root nil)
-;; (setq elpy-shell-starting-directory 'current-directory)
+(use-package py-autopep8
+  :demand t
+  :after lsp-pyright
+  :hook (python-mode . py-autopep8-enable-on-save)
+  :config (setq py-autopep8-options '("--max-line-length=80" "--experimental")))
+
+(use-package numpydoc
+  :ensure t
+  :defer t
+  :bind (:map python-mode-map
+              ("C-c C-n" . numpydoc-generate)))
+
+
 (provide 'python-settings)
 ;;; python-settings.el ends here
