@@ -12,7 +12,11 @@
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-prefer-flymake nil)
   (setq lsp-file-watch-threshold 3000)
-  (lsp-enable-which-key-integration t))
+  (setq lsp-completion-no-cache t)
+  (lsp-enable-which-key-integration t)
+  
+  (advice-add #'lsp--auto-configure :override #'ignore)
+  )
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -22,21 +26,22 @@
   (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
+  :demand t
   :after lsp)
 
 (use-package company
+  :demand t
   :after lsp-mode
+  :init (global-company-mode 1)
   :hook (lsp-mode . company-mode)
-  :bind
-  (:map company-active-map
-        ("<tab>" . company-complete-selection))
-  (:map lsp-mode-map
-        ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-idle-delay 0.5)
-  (company-minimum-prefix-length 1))
+  ;; :custom
+  ;; (company-minimum-prefix-length 1)
+  ;; (company-idle-delay 0.5)
+  )
 
 (use-package  company-box
+  :demand t
+  :after company
   :hook (company-mode . company-box-mode))
 
 (use-package projectile
@@ -53,13 +58,18 @@
 
 
 (use-package flycheck
+  :demand t
   :after lsp
   :config
-  (setq flycheck-python-flake8-executable "flake8"))
+  (setq-default flycheck-python-pyright-executable "/usr/local/bin/pyright")
+  (setq-default flycheck-python-flake8-executable "/usr/local/bin/flake8"))
 
-
+(use-package flycheck-pos-tip
+  :demand t
+  :after flycheck)
 
 (use-package ccls
+  :defer t
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp)))
   :config
@@ -73,37 +83,36 @@
                      rest)))
 
 (use-package lsp-pyright
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp)))
+  :defer t
+  :hook ((python-mode) . (lambda () (require 'lsp-pyright) (lsp)))
   :if (executable-find "pyright")
   :config
-  (setq lsp-pyright-python-executable "/usr/local/bin/python3")
+  (setq lsp-pyright-python-executable "/usr/bin/python3")
   (setq lsp-pyright-python-executable-cmd "python3")
   (setq lsp-pyright-stub-path "")
-  (setq lsp-pyright-use-library-code-for-types t)
+  (setq lsp-pyright-use-library-code-for-types nil)
   (setq lsp-pyright-auto-import-completions t)
   (setq lsp-pyright-auto-search-paths t)
-  ;; ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
-  ;; ;; taken from: https://github.com/emacs-lsp/lsp-python-ms/issues/43
-  ;; (flycheck-mode . (lambda ()
-  ;;                    (flycheck-add-next-checker 'lsp 'python-flake8)
-  ;;                    ;; (flycheck-add-next-checker 'python-flake8 'python-mypy)
-  ;;                    (message "Added flycheck checkers.")))
   )
 
 ;; https://github.com/FredeEB/.emacs.d#yasnippet
 (use-package yasnippet
-  :hook (python-mode . yas-minor-mode)
-  (c-mode . yas-minor-mode)
-  (c++-mode . yas-minor-mode)
-  (c-or-c++-mode . yas-minor-mode))
+  :config
+  (yas-global-mode 1)
+  (setq yas-triggers-in-field t)
+  )
 
 (use-package yasnippet-snippets
-  :after yasnippet)
+  :after yasnippet
+  :config
+  (add-hook 'python-mode-hook
+      (lambda ()
+        (make-local-variable 'yas-snippet-dirs)
+        (setq yas-snippet-dirs "~/.emacs.d/snippets")))
+  )
 
-(use-package auto-yasnippet
-  :after yasnippet)
+;; (use-package auto-yasnippet
+;;   :after yasnippet)
 
 ;; might be useful
 ;; (defun company-yasnippet-or-completion ()
