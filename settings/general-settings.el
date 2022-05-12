@@ -58,7 +58,6 @@
 
 (use-package which-key
   :init (which-key-mode)
-  :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
 
@@ -119,7 +118,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 ;;tab-width
-(setq my-tab-width 4)
+(setq my-tab-width 2)
 (setq-default tab-width my-tab-width)
 ;;don't add newlines at the end of the file
 (setq mode-require-final-newline nil)
