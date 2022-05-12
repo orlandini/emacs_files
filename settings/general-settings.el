@@ -75,20 +75,6 @@
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
   )
 
-;; http://pragmaticemacs.com/emacs/advanced-undoredo-with-undo-tree/
-(use-package undo-tree
-  :defer 4
-  :config
-  ;;turn on everywhere
-  (global-undo-tree-mode)
-  ;; make ctrl-z undo
-  ;; (global-set-key (kbd "C-z") 'undo)
-  ;; ;; make ctrl-Z redo
-  ;; (defalias 'redo 'undo-tree-redo)
-  ;; (global-set-key (kbd "C-S-z") 'redo)
-  :bind (("C-z" . undo)
-         ("C-S-z" . undo-tree-redo)))
-
 ;;smarter-beginning-of-line
 ;;https://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line
 (defun smarter-move-beginning-of-line (arg)
