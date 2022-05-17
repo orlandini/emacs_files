@@ -14,7 +14,13 @@
   ;; (ivy-mode . ivy-posframe-mode) ;; see the posframe block below
   :config
   (ivy-mode)
-  (setq enable-recursive-minibuffers t))
+  (setq enable-recursive-minibuffers t)
+
+  ;;https://emacs.stackexchange.com/questions/36745/enable-ivy-fuzzy-matching-everywhere-except-in-swiper
+  (setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t      . ivy--regex-fuzzy)))
+  )
 
 (use-package counsel
   :after ivy
