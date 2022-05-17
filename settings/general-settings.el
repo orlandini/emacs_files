@@ -88,7 +88,7 @@
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   :bind (("C-z" . undo)
          ("C-S-z" . undo-tree-redo)
-         ("C-c u" clear-undo-tree)
+         ("C-c u" . clear-undo-tree)
          ))
 
 ;;smarter-beginning-of-line
