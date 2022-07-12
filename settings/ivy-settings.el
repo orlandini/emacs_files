@@ -18,9 +18,12 @@
 
   ;;https://emacs.stackexchange.com/questions/36745/enable-ivy-fuzzy-matching-everywhere-except-in-swiper
   (setq ivy-re-builders-alist
-      '((swiper . ivy--regex-plus)
-        (t      . ivy--regex-fuzzy)))
+        '((swiper . ivy--regex-plus)
+          (swiper-backward . ivy--regex-plus)
+          (t      . ivy--regex-fuzzy)))
   )
+
+;; IMPORTANT: ivy-toggle-regexp-quote (M-r) is your friend for temporarily disabling regexp ;)
 
 (use-package counsel
   :after ivy
