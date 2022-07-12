@@ -17,6 +17,7 @@
   :hook
   ;; https://stackoverflow.com/questions/1475279/how-to-control-indentation-after-an-open-parenthesis-in-emacs
   ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (c-set-offset 'arglist-intro 'my-tab-width)))
+  ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (c-set-offset 'substatement-open 0)))
   :config
   (setq-default c-basic-offset my-tab-width)
   )
