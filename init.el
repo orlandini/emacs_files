@@ -29,7 +29,7 @@
 (require 'org-mode-settings)
 (require 'magit-settings)
 
-
+(require 'dwim-settings)
 ;; ;; End:
 ;; ;;; init.el ends here
 
