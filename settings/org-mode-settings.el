@@ -30,6 +30,12 @@
   ;; (org-latex-pdf-process (list "latexmk -xelatex -f %f"))
   )
 
+(use-package org-fragtog
+  :after org
+  :hook (org-mode . org-fragtog-mode)
+  :config
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.75))
+  )
 ;; ORG-AGENDA settings
 ;; references:
 ;;    http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
