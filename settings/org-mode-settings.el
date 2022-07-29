@@ -1,4 +1,7 @@
 (use-package org
+  :custom ((org-export-backends '(md odt latex icalendar html ascii)))
+  :config
+  (add-to-list 'org-file-apps '("\\.pdf\\'" . emacs))
   ;; :bind (("C-c l" . 'org-store-link)
   ;;        :map org-mode-map
   ;;        (("M-i p" . 'org-insert-python-block)
