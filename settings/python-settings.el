@@ -6,7 +6,8 @@
     (setq python-path "/usr/local/bin/python3")
   (setq python-path "/usr/bin/python3")
   )
-(setq python-shell-interpreter python-path)
+(setq python-shell-interpreter "ipython3")
+(setq python-shell-interpreter-args "--simple-prompt --pprint")
 
 (use-package py-autopep8
   :demand t
