@@ -38,6 +38,12 @@
   :hook (org-mode . org-fragtog-mode)
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.75))
+  (add-to-list 'org-latex-packages-alist
+               '("" "tikz" t))
+
+  (eval-after-load "preview"
+    '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
+  (setq org-latex-create-formula-image-program 'imagemagick)
   )
 ;; ORG-AGENDA settings
 ;; references:
