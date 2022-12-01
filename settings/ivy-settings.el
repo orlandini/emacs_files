@@ -25,6 +25,9 @@
 
 ;; IMPORTANT: ivy-toggle-regexp-quote (M-r) is your friend for temporarily disabling regexp ;)
 
+(use-package flx
+  :after ivy
+  :ensure t)
 (use-package counsel
   :after ivy
   :ensure t
