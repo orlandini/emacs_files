@@ -190,6 +190,15 @@ point reaches the beginning or end of the buffer, stop there."
     (message "")
   (global-display-line-numbers-mode))
 
+
+(defun my-inhibit-global-display-line-numbers-mode ()
+  "Counter-act `global-display-line-numbers-mode'."
+  (add-hook 'after-change-major-mode-hook
+            (lambda () (display-line-numbers-mode 0))
+            :append :local))
+
+(add-hook 'pdf-view-mode-hook 'my-inhibit-global-display-line-numbers-mode)
+
 ; don't indent with tabs
 (setq-default indent-tabs-mode nil)
 
