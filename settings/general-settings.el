@@ -170,6 +170,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; ansi colors in shell
 (use-package ansi-color
+  :ensure t
+  :hook (compilation-filter . ansi-color-compilation-filter) 
   :defer 0.5)
 
 ;; (use-package shx
