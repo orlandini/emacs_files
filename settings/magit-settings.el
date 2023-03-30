@@ -15,10 +15,11 @@
   :demand t
   :after magit)
 
-(use-package forge
-  :demand t
-  :after ghub)
+;; (use-package forge
+;;   :demand t
+;;   :after ghub)
 
 (setq auth-sources '("~/.authinfo.gpg"))
 
 (provide 'magit-settings)
+;; 
