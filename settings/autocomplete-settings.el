@@ -94,6 +94,7 @@
   (setq lsp-pyright-use-library-code-for-types nil)
   (setq lsp-pyright-auto-import-completions t)
   (setq lsp-pyright-auto-search-paths t)
+  (setq lsp-pyright-extra-paths ".")
   )
 
 ;; https://github.com/FredeEB/.emacs.d#yasnippet
