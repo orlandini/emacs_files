@@ -14,6 +14,7 @@
   (setq lsp-file-watch-threshold 3000)
   (setq lsp-completion-no-cache t)
   (lsp-enable-which-key-integration t)
+  (add-to-list 'lsp-file-watch-ignored "build")
   
   (advice-add #'lsp--auto-configure :override #'ignore)
   )
