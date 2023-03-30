@@ -10,6 +10,10 @@
 ;;PERFORMANCE
 ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
+;; https://github.com/stsquad/my-emacs-stuff/blob/33d4dee59a404eba0f236bbadbc8bb4e21095577/my-devel.el#L28 speed up compilation mode
+(setq compilation-error-regexp-alist '(gcc-include gnu))
+;; Avoid performance issues in files with very long lines.
+(global-so-long-mode 1)
 ;; DEBUGGING INIT TIMES
 
 
