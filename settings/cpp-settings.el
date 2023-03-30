@@ -8,7 +8,6 @@
 (setq-default cmake-tab-width my-tab-width)
 
 (use-package cc-mode
-  :hook c++-mode
   :init
   (fset 'add_block_brackets
         [return ?\{ return return ?\} up tab])
