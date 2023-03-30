@@ -7,6 +7,8 @@
 (when (not (package-installed-p 'use-package)) (package-refresh-contents) (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(setq delete-by-moving-to-trash t)
 ;;PERFORMANCE
 ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
