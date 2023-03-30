@@ -23,6 +23,7 @@
 (require 'python-settings)
 (require 'cpp-settings)
 (require 'gdb-settings)
+(require  'dap-settings)
 (require 'autocomplete-settings)
 
 (require 'latex-settings)
