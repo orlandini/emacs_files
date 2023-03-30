@@ -15,7 +15,7 @@
   :config
   (ivy-mode)
   (setq enable-recursive-minibuffers t)
-
+  (define-key ivy-minibuffer-map (kbd "C-t") 'swiper-isearch-toggle)
   ;;https://emacs.stackexchange.com/questions/36745/enable-ivy-fuzzy-matching-everywhere-except-in-swiper
   (setq ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
@@ -31,9 +31,17 @@
 (use-package counsel
   :after ivy
   :ensure t
+  :defer 0.6
   :demand
   :diminish counsel-mode
   :config
   (counsel-mode 1))
+
+(use-package ivy-bibtex
+  :defer 0.5
+  :after ivy)
+
+(use-package ivy-hydra
+  :after ivy)
 
 (provide 'ivy-settings)
