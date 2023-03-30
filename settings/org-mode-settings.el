@@ -33,6 +33,19 @@
   ;; (org-latex-pdf-process (list "latexmk -xelatex -f %f"))
   )
 
+(use-package org-ref
+  :config
+  (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
+  (setq org-ref-default-type "Cref")
+  :after org)
+
+(require 'org-ref-ivy)
+
+(use-package org-noter
+  :after org
+  :config (setq org-noter-notes-search-path '("~/orgmode/notes")))
+
+
 (use-package org-fragtog
   :after org
   :hook (org-mode . org-fragtog-mode)
@@ -55,25 +68,5 @@
       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "SOMEDAY(s)" "PROJ(p)" "|" "DONE(d)" "CANCELLED(c)")))
 
 (setq org-export-allow-bind-keywords t)
-
-
-(use-package org-pomodoro
-  :hook org-mode
-  :config
-  (setq org-pomodoro-keep-killed-pomodoro-time t)
-  )
-
-;; sync google agenda
-
-;; (use-package org-gcal
-;; :hook org-mode
-;; :config
-;; (setq org-gcal-client-id "<my-client-id>"
-;; org-gcal-client-secret "<my-client-secret>"
-;; org-gcal-file-alist '(("<my-email>" .  "~/orgmode/gcal-main.org")
-;;                       ("uoklg77oj06cob1gaan5tnjr6o@group.calendar.google.com" . "~/orgmode/gcal-labmec.org")
-;;                       ("171qvqt3f7g4aim0t1njl0vf98@group.calendar.google.com" .  "~/orgmode/gcal-unicamp.org")
-;;                       ("ehua3rb4s12op0155ktir43fb4@group.calendar.google.com" .  "~/orgmode/gcal-health.org")))
-;; )
 
 (provide 'org-mode-settings)
