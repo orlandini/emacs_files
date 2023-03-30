@@ -345,14 +345,14 @@ point reaches the beginning or end of the buffer, stop there."
 
 
 
-(use-package quelpa
-  :defer 3  
-  :config
-  (quelpa
-   '(quelpa-use-package
-     :fetcher git
-     :url "https://github.com/quelpa/quelpa-use-package.git"))
-  (require 'quelpa-use-package))
+;; (use-package quelpa
+;;   :defer 3  
+;;   :config
+;;   (quelpa
+;;    '(quelpa-use-package
+;;      :fetcher git
+;;      :url "https://github.com/quelpa/quelpa-use-package.git"))
+;;   (require 'quelpa-use-package))
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
