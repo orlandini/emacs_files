@@ -24,7 +24,8 @@
 (require 'cpp-settings)
 (require 'gdb-settings)
 (require  'dap-settings)
-(require 'autocomplete-settings)
+(require 'autocomplete-settings-new)
+;; (require 'autocomplete-settings)
 
 (require 'latex-settings)
 (require 'org-mode-settings)

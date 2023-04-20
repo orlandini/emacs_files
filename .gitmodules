@@ -1,0 +1,9 @@
+[submodule "lsp_bridge"]
+	path = lsp_bridge
+	url = git@github.com:manateelazycat/lsp-bridge
+[submodule "lsp-bridge"]
+	path = lsp-bridge
+	url = git@github.com:manateelazycat/lsp-bridge
+[submodule "acm-terminal"]
+	path = acm-terminal
+	url = git@github.com:twlz0ne/acm-terminal
