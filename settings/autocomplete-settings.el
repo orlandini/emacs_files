@@ -8,6 +8,14 @@
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+  :custom
+  (lsp-completion-provider :none) ;; we use Corfu!
+  :init
+  (defun my/lsp-mode-setup-completion ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless))) ;; Configure orderless
+  :hook
+  (lsp-completion-mode . my/lsp-mode-setup-completion)
   :config
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-prefer-flymake nil)
@@ -30,20 +38,43 @@
   :demand t
   :after lsp)
 
-(use-package company
-  :demand t
-  :after lsp-mode
-  :init (global-company-mode 1)
-  :hook (lsp-mode . company-mode)
-  ;; :custom
-  ;; (company-minimum-prefix-length 1)
-  ;; (company-idle-delay 0.5)
-  )
 
-(use-package  company-box
+(defun corfu-enable-always-in-minibuffer ()
+  "Enable Corfu in the minibuffer if Vertico/Mct are not active."
+  (unless (or (bound-and-true-p mct--active)
+              (bound-and-true-p vertico--input)
+              (eq (current-local-map) read-passwd-map))
+    ;; (setq-local corfu-auto nil) ;; Enable/disable auto completion
+    (setq-local corfu-popupinfo-delay 0.0001)
+    (corfu-mode 1)))
+
+(use-package corfu
   :demand t
-  :after company
-  :hook (company-mode . company-box-mode))
+  :after orderless
+  :custom
+  (corfu-quit-at-boundary nil)
+  (corfu-quit-no-match t)
+  (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-preselect-first nil)    ;; Disable candidate preselection
+  (corfu-popupinfo-delay 0.0001)
+  :hook
+  ((corfu-mode . corfu-popupinfo-mode))
+  :config
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer)
+  :init
+  (global-corfu-mode))
+
+(use-package orderless
+  :demand t
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion)))))
+  :config
+  ;; Fix completing hostnames when using /ssh:
+  (setq completion-styles '(orderless)
+        completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package projectile
   :diminish projectile-mode
