@@ -9,6 +9,13 @@
 (setq python-shell-interpreter "ipython3")
 (setq python-shell-interpreter-args "--simple-prompt --pprint")
 
+
+;;this will set the WORKING DIRECTORY of python interpreter as project root
+(defun my-run-python ()
+  (interactive)
+  (let ((default-directory (or (projectile-project-root) default-directory)))
+    (call-interactively #'run-python)))
+
 (use-package py-autopep8
   :ensure t
   :demand t
