@@ -152,13 +152,12 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package exec-path-from-shell
   :defer 1
-  :config
-  
+  :init
   (setenv "SHELL" "/usr/bin/zsh")
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "PYTHONPATH")
-  (exec-path-from-shell-copy-env "DYLD_LIBRARY_PATH")
-  (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
+  (setq
+   exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "DYLD_LIBRARY_PATH" "LD_LIBRARY_PATH")
+   exec-path-from-shell-arguments '("-l"))
+  :config
   ;; (if (not (eq system-type 'darwin))
   ;;     (setenv "SHELL" "/usr/bin/zsh")
   ;;   )
