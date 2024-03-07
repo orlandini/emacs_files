@@ -155,7 +155,7 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (setenv "SHELL" "/usr/bin/zsh")
   (setq
-   exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "DYLD_LIBRARY_PATH" "LD_LIBRARY_PATH")
+   exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "DYLD_LIBRARY_PATH" "LD_LIBRARY_PATH LSP_USE_PLISTS")
    exec-path-from-shell-arguments '("-l"))
   :config
   ;; (if (not (eq system-type 'darwin))

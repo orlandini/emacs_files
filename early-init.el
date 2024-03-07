@@ -5,8 +5,8 @@ during normal emacs operations.")
 ;; make garbage collector less invasive
 (setq gc-cons-threshold  most-positive-fixnum
       gc-cons-percentage 0.6)
-
-
+;;https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
+(setenv "LSP_USE_PLISTS" "true")
 
 ;; Prevent the glimpse of un-styled Emacs by disabling these UI elements early.
 (push '(menu-bar-lines . 0) default-frame-alist)
