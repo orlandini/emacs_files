@@ -394,4 +394,11 @@ point reaches the beginning or end of the buffer, stop there."
   (require 'pdf-occur))
 
 
+(use-package jinx
+  :ensure t
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
+
 (provide 'general-settings)
