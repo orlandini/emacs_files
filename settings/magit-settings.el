@@ -1,17 +1,4 @@
 
-(use-package magit
-  :defer 0.5
-  :init     
-    (setq auth-source-debug 'trivia)
-  :config
-    (add-hook 'magit-process-find-password-functions 'magit-process-password-auth-source))
-
-
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-c b") 'magit-blame)
-
-
-
 (defun dm/change-commit-author (arg)
   "Change the commit author during an interactive rebase in Magit.
 With a prefix argument, insert a new change commit author command
@@ -30,7 +17,20 @@ on the current line, if any."
                    ""))
      arg)))
 
-(define-key git-rebase-mode-map (kbd "h") #'dm/change-commit-author)
+(use-package magit
+  :defer 0.5
+  :init     
+    (setq auth-source-debug 'trivia)
+  :config
+  (add-hook 'magit-process-find-password-functions 'magit-process-password-auth-source)
+  )
+
+(with-eval-after-load 'magit '(define-key git-rebase-mode-map (kbd "h") #'dm/change-commit-author))
+
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-c b") 'magit-blame)
+
+
 
 (use-package ghub
   :demand t
