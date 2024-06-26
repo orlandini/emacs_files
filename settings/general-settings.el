@@ -153,20 +153,13 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package exec-path-from-shell
   :defer 1
   :init
-  (setenv "SHELL" "/usr/bin/zsh")
   (setq
-   exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "DYLD_LIBRARY_PATH" "LD_LIBRARY_PATH LSP_USE_PLISTS")
-   exec-path-from-shell-arguments '("-l"))
+   exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "DYLD_LIBRARY_PATH" "LD_LIBRARY_PATH"  "LSP_USE_PLISTS"))
+  (setq exec-path-from-shell-arguments nil)
   :config
-  ;; (if (not (eq system-type 'darwin))
-  ;;     (setenv "SHELL" "/usr/bin/zsh")
-  ;;   )
-  ;; (when (memq window-system '(mac ns x))
-  ;;   (exec-path-from-shell-initialize)
-  ;;   (exec-path-from-shell-copy-env "PYTHONPATH")
-  ;;   (exec-path-from-shell-copy-env "DYLD_LIBRARY_PATH")
-  ;;   (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
-  ;;   )
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)
+    )
   )
 
 
