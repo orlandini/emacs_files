@@ -13,6 +13,10 @@
   :config
   (setq TeX-auto-save t
         TeX-parse-self t)
+  (define-key TeX-mode-map "\"" #'self-insert-command);; avoid annoying quote replacement
+  (define-key TeX-mode-map "^" #'self-insert-command);; avoid annoying superscript replacement
+  (define-key TeX-mode-map "_" #'self-insert-command);; avoid annoying subscript replacement
+  (setq LaTeX-babel-hyphen nil);; avoid annoying hyphen replacement
   :init  ;; to use pdfview with auctex
    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
          TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
