@@ -39,6 +39,10 @@
   (setq esup-depth 1)
   (setq esup-user-init-file (file-truename "~/git/emacs_files/init.el")))
 
+(use-package casual-dired
+  :ensure t
+  :bind (:map dired-mode-map ("C-o" . 'casual-dired-tmenu)))
+
 (use-package restart-emacs
   :defer 1)
 ;; BETTER DEFAULTS
