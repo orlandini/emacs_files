@@ -40,23 +40,30 @@
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-  :custom
-  (lsp-completion-provider :none) ;; we use Corfu!
-  :init
   (defun my/lsp-mode-setup-completion ()
     (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
           '(orderless))) ;; Configure orderless
   :hook
   (lsp-completion-mode . my/lsp-mode-setup-completion)
+  ((c-mode c++-mode objc-mode cuda-mode) .
+   (lambda ()  (lsp)))
+  :custom
+  (lsp-completion-provider :none) ;; we use Corfu!
   :config
   (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-disabled-clients '(clangd))
   (setq lsp-prefer-flymake nil)
-  (setq lsp-file-watch-threshold 3000)
+  (setq lsp-file-watch-threshold 500)
   (setq lsp-completion-no-cache t)
+  (setq lsp-keep-workspace-alive nil)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-enable-suggest-server-download nil)
   (lsp-enable-which-key-integration t)
   (add-to-list 'lsp-file-watch-ignored "build")
+  (add-to-list 'lsp-file-watch-ignored ".cache")
   
   (advice-add #'lsp--auto-configure :override #'ignore)
+  (advice-add #'lsp-completion-at-point :around #'cape-wrap-noninterruptible)
   )
 
 (use-package lsp-ui
