@@ -8,6 +8,7 @@
 
 
 (use-package tex
+  :defer t
   :ensure auctex
   :hook ((LaTeX-mode) . lsp)
   :config
@@ -29,6 +30,7 @@
              #'TeX-revert-document-buffer))
 
 (use-package bibtex
+  :after tex
   :config
   (setq bibtex-autokey-year-length 4
       bibtex-autokey-name-year-separator ""
