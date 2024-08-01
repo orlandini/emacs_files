@@ -71,6 +71,16 @@
   :after lsp)
 
 
+(use-package lsp-latex
+  :after lsp
+  ;; this uses texlab
+  :ensure t
+  :config
+  (progn
+    (add-hook 'bibtex-mode-hook 'lsp)
+    )
+  )
+
 (defun corfu-enable-always-in-minibuffer ()
   "Enable Corfu in the minibuffer if Vertico/Mct are not active."
   (unless (or (bound-and-true-p mct--active)
