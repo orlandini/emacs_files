@@ -307,9 +307,12 @@ point reaches the beginning or end of the buffer, stop there."
 ;;     ;; (setq frame-inhibit-implied-resize nil)
 ;;     ))
 
-(use-package nord-theme
+
+(when (display-graphic-p)
+    (use-package nord-theme
   :init
-  (load-theme 'nord t))
+  (load-theme 'nord t)))
+
 
 (use-package sudo-edit
   :ensure t
