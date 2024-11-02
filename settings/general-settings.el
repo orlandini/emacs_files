@@ -202,6 +202,7 @@ point reaches the beginning or end of the buffer, stop there."
             :append :local))
 
 (add-hook 'pdf-view-mode-hook 'my-inhibit-global-display-line-numbers-mode)
+(add-hook 'image-mode-hook 'my-inhibit-global-display-line-numbers-mode)
 
 ; don't indent with tabs
 (setq-default indent-tabs-mode nil)
