@@ -114,6 +114,8 @@
   :init
   (global-corfu-mode))
 
+(use-package cape
+  :ensure t)
 (use-package orderless
   :demand t
   :init
