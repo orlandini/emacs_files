@@ -84,7 +84,7 @@
   :ensure t
   :config
   (progn
-    (add-hook 'bibtex-mode-hook 'lsp)
+    (add-hook 'bibtex-mode-hook 'lsp-deferred)
     )
   )
 
@@ -154,7 +154,7 @@
 (use-package ccls
   :defer t
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
-         (lambda () (require 'ccls) (lsp)))
+         (lambda () (require 'ccls) (lsp-deferred)))
   :config
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   )
