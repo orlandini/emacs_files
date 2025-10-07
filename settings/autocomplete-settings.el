@@ -167,16 +167,21 @@
 
 (use-package lsp-pyright
   :defer t
-  :hook ((python-mode) . (lambda () (require 'lsp-pyright) (lsp)))
-  :if (executable-find "pyright")
+  :custom (lsp-pyright-langserver-command "basedpyright")
+  :hook ((python-mode . (lambda () (require 'lsp-pyright)))
+	   (python-mode . lsp-deferred))
   :config
-  (setq lsp-pyright-python-executable "/usr/bin/python3")
-  (setq lsp-pyright-python-executable-cmd "python3")
-  (setq lsp-pyright-stub-path "")
-  (setq lsp-pyright-use-library-code-for-types nil)
-  (setq lsp-pyright-auto-import-completions t)
-  (setq lsp-pyright-auto-search-paths t)
-  (setq lsp-pyright-extra-paths (projectile-project-root))
+  ;; these hooks can't go in the :hook section since lsp-restart-workspace
+  ;; is not available if lsp isn't active
+  (add-hook 'conda-postactivate-hook (lambda () (lsp-restart-workspace)))
+  (add-hook 'conda-postdeactivate-hook (lambda () (lsp-restart-workspace)))
+  ;; (setq lsp-pyright-python-executable "/usr/bin/python3")
+  ;; (setq lsp-pyright-python-executable-cmd "python3")
+  ;; (setq lsp-pyright-stub-path "")
+  ;; (setq lsp-pyright-use-library-code-for-types nil)
+  ;; (setq lsp-pyright-auto-import-completions t)
+  ;; (setq lsp-pyright-auto-search-paths t)
+  ;; (setq lsp-pyright-extra-paths '(projectile-project-root))
   )
 
 

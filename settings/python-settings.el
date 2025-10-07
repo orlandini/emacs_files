@@ -10,6 +10,16 @@
 (setq python-shell-interpreter-args "--simple-prompt --pprint")
 
 
+
+(use-package conda
+  :defer t
+  :init
+  (setq conda-anaconda-home (expand-file-name "~/miniconda3"))
+  (setq conda-env-home-directory (expand-file-name "~/miniconda3"))
+  :config
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell))
+
 ;;this will set the WORKING DIRECTORY of python interpreter as project root
 (defun my-run-python ()
   (interactive)
