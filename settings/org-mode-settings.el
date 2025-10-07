@@ -41,9 +41,9 @@
 
 (require 'org-ref-ivy)
 
-(use-package org-noter
-  :after org
-  :config (setq org-noter-notes-search-path '("~/orgmode/notes")))
+;; (use-package org-noter
+;;   :after org
+;;   :config (setq org-noter-notes-search-path '("~/orgmode/notes")))
 
 
 (use-package org-fragtog
