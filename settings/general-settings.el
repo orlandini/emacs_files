@@ -8,6 +8,28 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+
+(use-package quelpa)
+
+(use-package quelpa-use-package
+  :init
+  (setq quelpa-update-melpa-p nil)
+  (setq quelpa-self-upgrade-p nil)
+  :config
+  (quelpa-use-package-activate-advice))
+
+;; (unless (package-installed-p 'quelpa)
+;;   (with-temp-buffer
+;;     (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+;;     (eval-buffer)
+;;     (quelpa-self-upgrade)))
+
+;; (quelpa
+;;  '(quelpa-use-package
+;;    :fetcher git
+;;    :url "https://github.com/quelpa/quelpa-use-package.git"))
+(require 'quelpa-use-package)
+
 (setq delete-by-moving-to-trash t)
 ;;PERFORMANCE
 ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
@@ -348,17 +370,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;;ansi-term won't break ling lines in weird ways
 (setq term-suppress-hard-newline t)
-
-
-
-;; (use-package quelpa
-;;   :defer 3  
-;;   :config
-;;   (quelpa
-;;    '(quelpa-use-package
-;;      :fetcher git
-;;      :url "https://github.com/quelpa/quelpa-use-package.git"))
-;;   (require 'quelpa-use-package))
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
