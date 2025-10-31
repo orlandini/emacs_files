@@ -184,7 +184,8 @@ point reaches the beginning or end of the buffer, stop there."
 ;;   :config
 ;;   (add-hook 'shx-mode-hook 'ansi-color-for-comint-mode-on))
 
-  
+;; y/n for  answering yes/no questions
+(fset 'yes-or-no-p 'y-or-n-p)  
 ; language
 (setq current-language-environment "English")
 ; don't show the startup screen
