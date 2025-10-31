@@ -7,3 +7,6 @@
 [submodule "acm-terminal"]
 	path = acm-terminal
 	url = git@github.com:twlz0ne/acm-terminal
+[submodule "buffer-box"]
+	path = buffer-box
+	url = git@github.com:rougier/buffer-box

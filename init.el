@@ -16,6 +16,7 @@
 
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/settings")
+(add-to-list 'load-path "~/.emacs.d/buffer-box")
 ;; (require 'better-defaults)
 (require 'general-settings)
 (require 'system-cores)
