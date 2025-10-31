@@ -45,7 +45,7 @@
           '(orderless))) ;; Configure orderless
   :hook
   (lsp-completion-mode . my/lsp-mode-setup-completion)
-  ((c-mode c++-mode objc-mode cuda-mode) .
+  ((c-mode c++-mode objc-mode cuda-mode f90-mode) .
    (lambda ()  (lsp)))
   :custom
   (lsp-completion-provider :none) ;; we use Corfu!
@@ -58,6 +58,7 @@
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-idle-delay 0.500)
   (setq lsp-enable-suggest-server-download nil)
+  (setq lsp-clients-fortls-args '("--enable_code_actions" "--hover_signature"))
   (lsp-enable-which-key-integration t)
   (add-to-list 'lsp-file-watch-ignored "build")
   (add-to-list 'lsp-file-watch-ignored ".cache")
