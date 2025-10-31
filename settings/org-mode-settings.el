@@ -31,15 +31,24 @@
   ;; (org-startup-indented t) ; Enable `org-indent-mode' by default
   ;; ;; Scale latex images
   ;; (org-latex-pdf-process (list "latexmk -xelatex -f %f"))
+  :config
+  (setq org-agenda-files
+        (file-expand-wildcards "~/orgmode/*.org"))
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "SOMEDAY(s)" "PROJ(p)" "|" "DONE(d)" "CANCELLED(c)")))
+
+  (setq org-export-allow-bind-keywords t)
   )
 
 (use-package org-ref
+  :defer 7.6
   :config
   (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
   (setq org-ref-default-type "Cref")
-  :after org)
-
-(require 'org-ref-ivy)
+  :after org
+  :config
+  (require 'org-ref-ivy))
 
 ;; (use-package org-noter
 ;;   :after org
@@ -47,6 +56,7 @@
 
 
 (use-package org-fragtog
+  :defer 10
   :after org
   :hook (org-mode . org-fragtog-mode)
   :config
@@ -58,15 +68,5 @@
     '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
   (setq org-latex-create-formula-image-program 'imagemagick)
   )
-;; ORG-AGENDA settings
-;; references:
-;;    http://www.personal.psu.edu/bam49/notebook/org-mode-for-research/
-(setq org-agenda-files
-      (file-expand-wildcards "~/orgmode/*.org"))
-
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "SOMEDAY(s)" "PROJ(p)" "|" "DONE(d)" "CANCELLED(c)")))
-
-(setq org-export-allow-bind-keywords t)
 
 (provide 'org-mode-settings)
