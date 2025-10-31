@@ -325,22 +325,6 @@ point reaches the beginning or end of the buffer, stop there."
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-
-;; (let ((custom--inhibit-theme-enable nil))
-;;   (use-package nord-theme
-;;     ;; :init
-;;     ;; (setq frame-inhibit-implied-resize t)
-;;     ;; :config
-;;     ;; (setq frame-inhibit-implied-resize nil)
-;;     ))
-
-
-(when (display-graphic-p)
-    (use-package nord-theme
-  :init
-  (load-theme 'nord t)))
-
-
 (use-package sudo-edit
   :ensure t
   :defer 2

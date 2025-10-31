@@ -33,5 +33,6 @@
 (require 'magit-settings)
 
 (require 'dwim-settings)
+(require 'theme-settings)
 ;; ;; End:
 ;; ;;; init.el ends here
