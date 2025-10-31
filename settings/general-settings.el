@@ -191,7 +191,7 @@ point reaches the beginning or end of the buffer, stop there."
 ; don't show the startup screen
 (setq inhibit-startup-screen t)
 
-(set-face-attribute 'default nil :family "Hack")
+;; (set-face-attribute 'default nil :family "Hack")
 
                                         ; always show line numbers
 (if (version< emacs-version "26")

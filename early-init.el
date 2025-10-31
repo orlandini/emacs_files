@@ -14,12 +14,22 @@ during normal emacs operations.")
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-modes . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
-(set-face-attribute 'default nil
-                    :family "Fira Code"
-                    :height 120
-                    ;; :weight 'normal
-                    ;; :width 'normal
-                    )
+
+(unless (eq window-system 'ns)
+    (menu-bar-mode -1))
+  (when (fboundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+  (when (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+  (when (fboundp 'horizontal-scroll-bar-mode)
+    (horizontal-scroll-bar-mode -1))
+
+;; (set-face-attribute 'default nil
+;;                     :family "Fira Code"
+;;                     :height 120
+;;                     ;; :weight 'normal
+;;                     ;; :width 'normal
+;;                     )
 
 (setq default-file-name-handler-alist file-name-handler-alist
       file-name-handler-alist nil)
