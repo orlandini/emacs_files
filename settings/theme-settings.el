@@ -51,11 +51,17 @@
      (set-face-foreground 'org-todo nano-dark-critical)
      (set-face-foreground 'org-level-2 nano-dark-salient)))
 
-(defun load-nano-dark-theme (_frame)
-  (nano-mode)
-  (nano-dark))
-(run-at-time "0.2" nil (lambda nil (nano-dark)))
-(add-hook 'after-make-frame-functions #'load-nano-dark-theme)
+(eval-after-load "magit"
+  '(progn
+     (set-face-background 'magit-diff-lines-boundary  (face-foreground `nano-salient))
+     ))
+
+;; (run-at-time "0.2" nil (lambda nil (nano-mode)(nano-dark)))
 ;; Immediate border toggling (using default header)
-(require 'buffer-box)
+(require 'buffer-\box)
+
+(load-theme 'nano t)
+(nano-mode)
+(nano-dark)
+
 (provide 'theme-settings)
