@@ -45,7 +45,7 @@
   (nano-modeline-text-mode t)
   )
 
-(eval-after-load "org-mode"
+(eval-after-load "org"
   '(progn
      (set-face-foreground 'org-done nano-dark-popout)
      (set-face-foreground 'org-todo nano-dark-critical)
@@ -56,12 +56,12 @@
      (set-face-background 'magit-diff-lines-boundary  (face-foreground `nano-salient))
      ))
 
-;; (run-at-time "0.2" nil (lambda nil (nano-mode)(nano-dark)))
+(run-at-time "0.2" nil (lambda nil (nano-mode)(nano-dark)))
 ;; Immediate border toggling (using default header)
-(require 'buffer-\box)
-
-(load-theme 'nano t)
-(nano-mode)
-(nano-dark)
-
+(use-package buffer-box
+  :ensure nil
+  :defer t
+  :quelpa (buffer-box
+           :fetcher github
+           :repo "rougier/buffer-box"))
 (provide 'theme-settings)
