@@ -23,6 +23,17 @@
           (t      . ivy--regex-fuzzy)))
   )
 
+
+(defvar ivy--identity #'identity
+  "Store the identity state.")
+(advice-add 'ivy--reset-state :before (lambda (&rest r) (setq ivy--identity #'identity)))
+
+(defun ivy-toggle-regexp-quote ()
+  "Toggle the regexp quoting."
+  (interactive)
+  (setq ivy--old-re nil)
+  (cl-rotatef ivy--regex-function ivy--regexp-quote ivy--identity)
+  (setq ivy-regex (funcall ivy--regex-function ivy-text)))
 ;; IMPORTANT: ivy-toggle-regexp-quote (M-r) is your friend for temporarily disabling regexp ;)
 
 (use-package flx
