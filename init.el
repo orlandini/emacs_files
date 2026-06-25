@@ -27,7 +27,7 @@
 (require  'dap-settings)
 ;; (require 'autocomplete-settings-new)
 (require 'autocomplete-settings)
-
+(require 'tramp-settings)
 (require 'latex-settings)
 (require 'org-mode-settings)
 (require 'magit-settings)
