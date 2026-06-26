@@ -24,6 +24,7 @@
 (require 'python-settings)
 (require 'cpp-settings)
 ;; (require 'gdb-settings)
+(require 'fortran-settings)
 (require  'dap-settings)
 ;; (require 'autocomplete-settings-new)
 (require 'autocomplete-settings)
