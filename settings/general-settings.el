@@ -174,7 +174,7 @@ point reaches the beginning or end of the buffer, stop there."
   (indent-for-tab-command)
   ;; (delete-indentation)
   )
-(setq split-width-threshold 100)
+(setq split-width-threshold 200)
 (global-set-key (kbd "<C-backspace>") 'smart-kill-line-backwards)
 ;; (global-set-key (kbd "<C-backspace>") 'delete-indentation)
 
